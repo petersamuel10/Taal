@@ -61,7 +61,7 @@ public class LoginActivity extends BaseActivity {
 
     private void storeCredentials(User user) {
         preferences.putBoolean(CodingKeys.USER_LOGGED.getKey(), true);
-        preferences.putString(CodingKeys.ACCESS_TOKEN.getKey(), user.getUserToken());
+        preferences.putString(CodingKeys.ACCESS_TOKEN.getKey(), user.getTokenId());
     }
 
 }

@@ -28,8 +28,8 @@ public class HeaderInterceptor implements Interceptor {
         Request request = chain.request();
         Headers.Builder headersBuilder = request.headers().newBuilder();
 
-        if (preferences.getString(CodingKeys.AUTHORIZATION.getKey()) != null)
-            headersBuilder.add(CodingKeys.AUTHORIZATION.getKey(), preferences.getString(CodingKeys.AUTHORIZATION.getKey()));
+        if (preferences.getString(CodingKeys.ACCESS_TOKEN.getKey()) != null)
+            headersBuilder.add(CodingKeys.AUTHORIZATION.getKey(), preferences.getString(CodingKeys.ACCESS_TOKEN.getKey()));
 
         Headers headers = headersBuilder.build();
         request = request.newBuilder().headers(headers).build();
