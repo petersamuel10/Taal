@@ -11,7 +11,6 @@ import com.vavisa.taal.data.model.User;
 import com.vavisa.taal.data.network.auth.AuthResource;
 import com.vavisa.taal.di.util.ViewModelProviderFactory;
 import com.vavisa.taal.ui.main.MainActivity;
-import com.vavisa.taal.util.CodingKeys;
 import com.vavisa.taal.util.Preferences;
 import com.vavisa.taal.util.ProgressDialog;
 
@@ -33,7 +32,7 @@ public class LoginActivity extends BaseActivity {
         setContentView(R.layout.activity_login);
         loginViewModel = ViewModelProviders.of(this, providerFactory).get(LoginViewModel.class);
         loginViewModel.observeAuthState().observe(this, this::consumeResponse);
-        loginViewModel.authWithCredentials("agabru@vavisa-kw.com", "123456");
+        loginViewModel.authWithCredentials("mario@mail.com", "12345678");
     }
 
     private void consumeResponse(AuthResource<User> userAuthResource) {
@@ -49,7 +48,6 @@ public class LoginActivity extends BaseActivity {
 
             case AUTHENTICATED:
                 ProgressDialog.getInstance().dismiss();
-                storeCredentials(userAuthResource.data);
                 start(MainActivity.class);
                 break;
 
@@ -57,11 +55,6 @@ public class LoginActivity extends BaseActivity {
                 ProgressDialog.getInstance().dismiss();
                 break;
         }
-    }
-
-    private void storeCredentials(User user) {
-        preferences.putBoolean(CodingKeys.USER_LOGGED.getKey(), true);
-        preferences.putString(CodingKeys.ACCESS_TOKEN.getKey(), user.getTokenId());
     }
 
 }

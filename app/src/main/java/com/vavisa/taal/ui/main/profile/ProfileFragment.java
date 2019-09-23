@@ -53,7 +53,7 @@ public class ProfileFragment extends BaseFragment {
                     ResponseBody responseBody = ((HttpException) userResource.error).response().errorBody();
                     showMessage(JsonParser.getMessage(responseBody));
                 } else
-                    showMessage("Something went wrong");
+                    showMessage(userResource.error.getMessage());
                 break;
 
             case SUCCESS:

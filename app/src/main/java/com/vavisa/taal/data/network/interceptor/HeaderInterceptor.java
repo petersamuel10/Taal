@@ -2,6 +2,8 @@ package com.vavisa.taal.data.network.interceptor;
 
 import android.content.Context;
 
+import com.vavisa.taal.BuildConfig;
+import com.vavisa.taal.R;
 import com.vavisa.taal.util.CodingKeys;
 import com.vavisa.taal.util.Preferences;
 
@@ -17,8 +19,10 @@ import okhttp3.Response;
 public class HeaderInterceptor implements Interceptor {
 
     private Preferences preferences;
+    private Context context;
 
     public HeaderInterceptor(Context context) {
+        this.context = context;
         this.preferences = new Preferences(context);
     }
 
@@ -27,7 +31,7 @@ public class HeaderInterceptor implements Interceptor {
     public Response intercept(@NotNull Chain chain) throws IOException {
         Request request = chain.request();
         Headers.Builder headersBuilder = request.headers().newBuilder();
-
+        headersBuilder.add(CodingKeys.VERSION_KEY.getKey(),  context.getResources().getString(R.string.version_prefix).concat(BuildConfig.VERSION_NAME));
         if (preferences.getString(CodingKeys.ACCESS_TOKEN.getKey()) != null)
             headersBuilder.add(CodingKeys.AUTHORIZATION.getKey(), preferences.getString(CodingKeys.ACCESS_TOKEN.getKey()));
 

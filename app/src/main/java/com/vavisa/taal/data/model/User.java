@@ -1,40 +1,108 @@
 package com.vavisa.taal.data.model;
 
+
+import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 public class User {
 
-    @SerializedName("user_id")
-    private String userId;
+    @Expose
+    private Integer id;
 
-    @SerializedName("token_id")
-    private String tokenId;
+    @Expose
+    private String email;
 
-    private String errorMessage;
+    @Expose
+    private String mobile;
 
-    public User() {}
+    @Expose
+    private Integer status;
 
-    public String getUserId() {
-        return userId;
+    @Expose
+    private Integer approved;
+
+    @Expose
+    private String imageUrl;
+
+    @SerializedName("fullname")
+    private String fullName;
+
+    @SerializedName("country_id")
+    private Integer countryId;
+
+    @SerializedName("player_id")
+    private String playerId;
+
+
+    public Integer getId() {
+        return id;
     }
 
-    public void setUserId(String userId) {
-        this.userId = userId;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
-    public String getTokenId() {
-        return tokenId;
+    public String getFullName() {
+        return fullName;
     }
 
-    public void setTokenId(String tokenId) {
-        this.tokenId = tokenId;
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
     }
 
-    public String getErrorMessage() {
-        return errorMessage;
+    public String getEmail() {
+        return email;
     }
 
-    public void setErrorMessage(String errorMessage) {
-        this.errorMessage = errorMessage;
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getMobile() {
+        return mobile;
+    }
+
+    public void setMobile(String mobile) {
+        this.mobile = mobile;
+    }
+
+    public Integer getStatus() {
+        return status;
+    }
+
+    public void setStatus(Integer status) {
+        this.status = status;
+    }
+
+    public String getPlayerId() {
+        return playerId;
+    }
+
+    public void setPlayerId(String playerId) {
+        this.playerId = playerId;
+    }
+
+    public Integer getApproved() {
+        return approved;
+    }
+
+    public void setApproved(Integer approved) {
+        this.approved = approved;
+    }
+
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
+    }
+
+    public Integer getCountryId() {
+        return countryId;
+    }
+
+    public void setCountryId(Integer countryId) {
+        this.countryId = countryId;
     }
 }

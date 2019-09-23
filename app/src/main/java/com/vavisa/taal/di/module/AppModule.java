@@ -5,6 +5,7 @@ import android.content.Context;
 
 import com.vavisa.taal.BuildConfig;
 import com.vavisa.taal.data.network.interceptor.HeaderInterceptor;
+import com.vavisa.taal.data.network.interceptor.NetworkConnectionInterceptor;
 import com.vavisa.taal.util.Preferences;
 
 import java.util.concurrent.TimeUnit;
@@ -44,6 +45,7 @@ public class AppModule {
         OkHttpClient.Builder client = new OkHttpClient.Builder();
         client.readTimeout(60, TimeUnit.SECONDS);
         client.connectTimeout(60, TimeUnit.SECONDS);
+        client.addInterceptor(new NetworkConnectionInterceptor(context));
         client.addInterceptor(new HeaderInterceptor(context));
         client.addInterceptor(loggingInterceptor);
 

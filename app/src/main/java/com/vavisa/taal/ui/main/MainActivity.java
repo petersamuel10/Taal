@@ -5,8 +5,13 @@ import android.os.Bundle;
 import com.vavisa.taal.R;
 import com.vavisa.taal.base.BaseActivity;
 import com.vavisa.taal.ui.main.profile.ProfileFragment;
+import com.vavisa.taal.util.Preferences;
+
+import javax.inject.Inject;
 
 public class MainActivity extends BaseActivity {
+
+    @Inject Preferences preferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

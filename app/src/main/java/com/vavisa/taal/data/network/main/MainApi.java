@@ -7,7 +7,7 @@ import io.reactivex.Observable;
 import retrofit2.http.GET;
 public interface MainApi {
 
-    @GET("User/profile")
+    @GET("user/getProfile")
     Observable<User> getUserProfile();
 
 }

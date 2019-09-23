@@ -2,10 +2,12 @@ package com.vavisa.taal.base;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.Toast;
 
 import com.vavisa.taal.data.model.SessionManager;
 import com.vavisa.taal.data.network.auth.AuthResource;
+import com.vavisa.taal.data.network.interceptor.InternetConnectionListener;
 import com.vavisa.taal.ui.auth.LoginActivity;
 import com.vavisa.taal.util.Preferences;
 import com.vavisa.taal.util.ProgressDialog;
@@ -14,7 +16,7 @@ import javax.inject.Inject;
 
 import dagger.android.support.DaggerAppCompatActivity;
 
-public class BaseActivity extends DaggerAppCompatActivity {
+public class BaseActivity extends DaggerAppCompatActivity implements InternetConnectionListener {
 
     @Inject
     public SessionManager sessionManager;
@@ -54,5 +56,10 @@ public class BaseActivity extends DaggerAppCompatActivity {
 
     public void showMessage(String message) {
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onInternetUnavailable() {
+        Log.d("http","No network available");
     }
 }

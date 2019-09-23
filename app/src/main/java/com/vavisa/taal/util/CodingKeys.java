@@ -2,8 +2,11 @@ package com.vavisa.taal.util;
 
 public enum CodingKeys {
     AUTHORIZATION("Authorization"),
-    ACCESS_TOKEN("token_id"),
-    MESSAGE_KEY("message"),
+    VERSION_KEY("Version"),
+    ACCESS_TOKEN("access_token"),
+    TOKEN_TYPE("token_type"),
+    ERROR_KEY("error"),
+    USER_KEY("user"),
     USER_LOGGED("user_logged");
 
     private String key;
