@@ -3,12 +3,14 @@ package com.vavisa.taal.ui.auth;
 import android.os.Bundle;
 import android.widget.Toast;
 
+import androidx.databinding.DataBindingUtil;
 import androidx.lifecycle.ViewModelProviders;
 
 import com.vavisa.taal.R;
 import com.vavisa.taal.base.BaseActivity;
 import com.vavisa.taal.data.model.User;
 import com.vavisa.taal.data.network.auth.AuthResource;
+import com.vavisa.taal.databinding.ActivityLoginBinding;
 import com.vavisa.taal.di.util.ViewModelProviderFactory;
 import com.vavisa.taal.ui.main.MainActivity;
 import com.vavisa.taal.util.Preferences;
@@ -29,10 +31,12 @@ public class LoginActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
+        ActivityLoginBinding loginBinding = DataBindingUtil.setContentView(this, R.layout.activity_login);
         loginViewModel = ViewModelProviders.of(this, providerFactory).get(LoginViewModel.class);
         loginViewModel.observeAuthState().observe(this, this::consumeResponse);
-//        loginViewModel.authWithCredentials("mario@mail.com", "12345678");
+        loginBinding.setViewModel(loginViewModel);
+        loginBinding.setEventHandler(new LoginEventHandler(this));
+        loginBinding.setLifecycleOwner(this);
     }
 
     private void consumeResponse(AuthResource<User> userAuthResource) {
@@ -48,7 +52,7 @@ public class LoginActivity extends BaseActivity {
 
             case AUTHENTICATED:
                 ProgressDialog.getInstance().dismiss();
-//                start(MainActivity.class);
+                start(MainActivity.class);
                 break;
 
             case NOT_AUTHENTICATED:

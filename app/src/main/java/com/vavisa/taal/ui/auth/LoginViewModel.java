@@ -2,6 +2,7 @@ package com.vavisa.taal.ui.auth;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.LiveDataReactiveStreams;
+import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 import com.google.gson.Gson;
@@ -11,9 +12,9 @@ import com.vavisa.taal.data.model.User;
 import com.vavisa.taal.data.network.auth.AuthResource;
 import com.vavisa.taal.data.repository.LoginRepository;
 import com.vavisa.taal.util.CodingKeys;
-import com.vavisa.taal.util.Connectivity;
 import com.vavisa.taal.util.JsonParser;
 import com.vavisa.taal.util.Preferences;
+import com.vavisa.taal.util.StringValidation;
 
 import javax.inject.Inject;
 
@@ -28,6 +29,12 @@ public class LoginViewModel extends ViewModel {
     private LoginRepository loginRepository;
     private Preferences preferences;
 
+    public MutableLiveData<String> errorPassword = new MutableLiveData<>();
+    public MutableLiveData<String> errorEmail = new MutableLiveData<>();
+
+    public MutableLiveData<String> email = new MutableLiveData<>();
+    public MutableLiveData<String> password = new MutableLiveData<>();
+
     @Inject
     LoginViewModel(LoginRepository loginRepository, SessionManager sessionManager, Preferences preferences) {
         this.loginRepository = loginRepository;
@@ -35,11 +42,35 @@ public class LoginViewModel extends ViewModel {
         this.preferences = preferences;
     }
 
+    public void onLoginClicked(){
+        if (isValidInput())
+            authWithCredentials(email.getValue(), password.getValue());
+    }
+
+    private boolean isValidInput() {
+        boolean isValid = true;
+
+        if (!StringValidation.isEmailValid(email.getValue())) {
+            errorEmail.setValue("Enter a valid email address");
+            isValid = false;
+        } else {
+            errorEmail.setValue(null);
+        }
+
+        if (!StringValidation.isPasswordValid(password.getValue())) {
+            errorPassword.setValue("Password Length should be greater than 5");
+            isValid = false;
+        } else {
+            errorPassword.setValue(null);
+        }
+        return isValid;
+    }
+
     LiveData<AuthResource<User>> observeAuthState() {
         return sessionManager.getAuthUser();
     }
 
-    void authWithCredentials(String email, String password) {
+    private void authWithCredentials(String email, String password) {
         sessionManager.authUser(queryUserCredentials(email, password));
     }
 

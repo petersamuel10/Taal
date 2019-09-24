@@ -42,7 +42,7 @@ public class BaseActivity extends DaggerAppCompatActivity implements InternetCon
         start(LoginActivity.class);
     }
 
-    protected void start(Class<? extends BaseActivity> activity) {
+    public void start(Class<? extends BaseActivity> activity) {
         startActivity(new Intent(this, activity));
     }
 
