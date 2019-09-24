@@ -32,7 +32,7 @@ public class LoginActivity extends BaseActivity {
         setContentView(R.layout.activity_login);
         loginViewModel = ViewModelProviders.of(this, providerFactory).get(LoginViewModel.class);
         loginViewModel.observeAuthState().observe(this, this::consumeResponse);
-        loginViewModel.authWithCredentials("mario@mail.com", "12345678");
+//        loginViewModel.authWithCredentials("mario@mail.com", "12345678");
     }
 
     private void consumeResponse(AuthResource<User> userAuthResource) {
@@ -48,7 +48,7 @@ public class LoginActivity extends BaseActivity {
 
             case AUTHENTICATED:
                 ProgressDialog.getInstance().dismiss();
-                start(MainActivity.class);
+//                start(MainActivity.class);
                 break;
 
             case NOT_AUTHENTICATED:
