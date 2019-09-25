@@ -8,7 +8,7 @@ import android.widget.Toast;
 import com.vavisa.taal.data.model.SessionManager;
 import com.vavisa.taal.data.network.auth.AuthResource;
 import com.vavisa.taal.data.network.interceptor.InternetConnectionListener;
-import com.vavisa.taal.ui.auth.LoginActivity;
+import com.vavisa.taal.ui.auth.login.LoginActivity;
 import com.vavisa.taal.util.Preferences;
 import com.vavisa.taal.util.ProgressDialog;
 

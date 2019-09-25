@@ -3,7 +3,8 @@ package com.vavisa.taal.di.module;
 import androidx.lifecycle.ViewModel;
 
 import com.vavisa.taal.di.util.ViewModelKey;
-import com.vavisa.taal.ui.auth.LoginViewModel;
+import com.vavisa.taal.ui.auth.login.LoginViewModel;
+import com.vavisa.taal.ui.auth.register.RegisterViewModel;
 
 import dagger.Binds;
 import dagger.Module;
@@ -17,4 +18,8 @@ public abstract class AuthViewModelModule {
     @ViewModelKey(LoginViewModel.class)
     public abstract ViewModel bindLoginViewModel(LoginViewModel loginViewModel);
 
+    @Binds
+    @IntoMap
+    @ViewModelKey(RegisterViewModel.class)
+    public abstract ViewModel bindRegisterViewModel(RegisterViewModel registerViewModel);
 }

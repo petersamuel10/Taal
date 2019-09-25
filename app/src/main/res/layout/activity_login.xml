@@ -9,7 +9,7 @@
         android:layout_gravity="center"
         android:background="@color/twilight_blue"
         android:orientation="vertical"
-        tools:context=".ui.auth.LoginActivity">
+        tools:context=".ui.auth.login.LoginActivity">
 
         <ImageView
             android:layout_width="wrap_content"
@@ -155,11 +155,11 @@
     <data>
         <variable
             name="viewModel"
-            type="com.vavisa.taal.ui.auth.LoginViewModel" />
+            type="com.vavisa.taal.ui.auth.login.LoginViewModel" />
 
         <variable
             name="eventHandler"
-            type="com.vavisa.taal.ui.auth.LoginEventHandler" />
+            type="com.vavisa.taal.ui.auth.login.LoginEventHandler" />
     </data>
 
 </layout>

@@ -1,4 +1,4 @@
-package com.vavisa.taal.ui.auth;
+package com.vavisa.taal.ui.auth.login;
 
 import android.os.Bundle;
 import android.widget.Toast;

@@ -3,9 +3,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.vavisa.taal">
 
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <uses-permission android:name="android.permission.INTERNET"/>
-
     <application
         android:name=".base.BaseApplication"
         android:allowBackup="true"
@@ -16,7 +13,8 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".ui.auth.LoginActivity"/>
+        <activity android:name=".ui.auth.register.RegisterActivity"></activity>
+        <activity android:name=".ui.auth.login.LoginActivity" />
         <activity android:name=".ui.main.MainActivity" />
         <activity android:name=".base.BaseActivity" />
         <activity android:name=".SplashActivity">
@@ -27,5 +25,8 @@
             </intent-filter>
         </activity>
     </application>
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
 </manifest>
