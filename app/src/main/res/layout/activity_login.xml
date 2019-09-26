@@ -18,7 +18,6 @@
             android:layout_weight="35"
             android:src="@drawable/service" />
 
-
         <ScrollView
             android:layout_width="match_parent"
             android:layout_height="0dp"
@@ -52,12 +51,15 @@
                     android:layout_gravity="center"
                     android:layout_marginTop="@dimen/_20sdp"
                     android:hint="@string/email"
+                    app:endIconMode="custom"
+                    app:endIconDrawable="@drawable/ic_email"
+                    app:endIconTint="@color/white"
                     app:boxStrokeColor="@color/white"
                     app:hintTextColor="@color/white"
                     app:errorIconTint="@color/white"
                     app:errorTextColor="@color/white"
                     app:errorEnabled="true"
-                    app:error="@{viewModel.errorEmail}">
+                    app:error="@{viewModel.emailError}">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:layout_width="match_parent"
@@ -86,7 +88,7 @@
                     app:errorIconTint="@color/white"
                     app:errorTextColor="@color/white"
                     app:errorEnabled="true"
-                    app:error="@{viewModel.errorPassword}">
+                    app:error="@{viewModel.passwordError}">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:layout_width="match_parent"
@@ -106,10 +108,9 @@
                     android:padding="@dimen/_10sdp"
                     android:text="@string/login"
                     android:textAppearance="@style/Light"
-                    android:onClick="@{()-> viewModel.onLoginClicked()}"
+                    android:onClick="@{()-> viewModel.onAuthClicked()}"
                     app:icon="@drawable/ic_lock"
-                    app:iconGravity="start"
-                    app:iconPadding="@dimen/_minus20sdp" />
+                    app:iconGravity="textStart" />
 
                 <View
                     android:layout_margin="@dimen/_10sdp"
@@ -143,8 +144,7 @@
                     android:textAppearance="@style/Light"
                     android:onClick="@{() -> eventHandler.signUpClicked()}"
                     app:icon="@drawable/ic_register"
-                    app:iconGravity="start"
-                    app:iconPadding="@dimen/_minus20sdp" />
+                    app:iconGravity="textStart"/>
 
             </LinearLayout>
 

@@ -2,14 +2,22 @@ package com.vavisa.taal.ui.auth.register;
 
 import android.os.Bundle;
 
-import com.vavisa.taal.R;
-import com.vavisa.taal.base.BaseActivity;
+import androidx.databinding.DataBindingUtil;
+import androidx.lifecycle.ViewModelProviders;
 
-public class RegisterActivity extends BaseActivity {
+import com.vavisa.taal.R;
+import com.vavisa.taal.databinding.ActivityRegisterBinding;
+import com.vavisa.taal.ui.auth.AuthActivity;
+
+public class RegisterActivity extends AuthActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_register);
+        ActivityRegisterBinding registerBinding = DataBindingUtil.setContentView(this, R.layout.activity_register);
+        RegisterViewModel registerViewModel = ViewModelProviders.of(this, providerFactory).get(RegisterViewModel.class);
+        registerViewModel.observeAuthState().observe(this, this::consumeResponse);
+        registerBinding.setViewModel(registerViewModel);
+        registerBinding.setLifecycleOwner(this);
     }
 }

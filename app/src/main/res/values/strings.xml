@@ -13,4 +13,11 @@
     <string name="sign_up">Sign up</string>
     <string name="or">OR</string>
     <string name="email">Email</string>
+    <string name="full_name">Full name</string>
+    <string name="confirm_password">Confirm password</string>
+    <string name="valid_email">Enter a valid email address</string>
+    <string name="valid_password">Password Length should be greater than 5</string>
+    <string name="mobile">Mobile</string>
+    <string name="valid_phone">Enter a valid number</string>
+    <string name="valid_name">Enter a valid user name</string>
 </resources>

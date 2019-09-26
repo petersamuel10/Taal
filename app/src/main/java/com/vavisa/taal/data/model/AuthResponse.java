@@ -3,8 +3,9 @@ package com.vavisa.taal.data.model;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class LoginResponse {
+public class AuthResponse {
 
+    @Expose
     private String message;
 
     @Expose

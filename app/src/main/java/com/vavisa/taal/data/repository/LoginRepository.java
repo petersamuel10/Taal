@@ -3,8 +3,7 @@ package com.vavisa.taal.data.repository;
 import android.content.Context;
 
 import com.vavisa.taal.R;
-import com.vavisa.taal.data.model.LoginResponse;
-import com.vavisa.taal.data.model.User;
+import com.vavisa.taal.data.model.AuthResponse;
 import com.vavisa.taal.data.network.auth.AuthApi;
 
 import javax.inject.Inject;
@@ -22,7 +21,7 @@ public class LoginRepository {
         this.context = context;
     }
 
-    public Flowable<LoginResponse> loginUser(String email, String password, String playerId){
+    public Flowable<AuthResponse> loginUser(String email, String password, String playerId){
         return authApi.userLogin(email, password, playerId, context.getResources().getInteger(R.integer.device_type));
     }
 }
