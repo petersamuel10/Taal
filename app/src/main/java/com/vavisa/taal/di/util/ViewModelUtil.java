@@ -10,7 +10,7 @@ public class ViewModelUtil {
     @Inject
     public ViewModelUtil() {}
 
-    public <T extends ViewModel> ViewModelProvider.Factory createFor(T model) {
+    public static  <T extends ViewModel> ViewModelProvider.Factory createFor(T model) {
         return new ViewModelProvider.Factory() {
             @Override
             public <T extends ViewModel> T create(Class<T> modelClass) {

@@ -1,6 +1,5 @@
 package com.vavisa.taal.ui.auth;
 
-import android.os.Bundle;
 import android.widget.Toast;
 
 import com.vavisa.taal.base.BaseActivity;
@@ -20,11 +19,6 @@ public class AuthActivity extends BaseActivity {
 
     @Inject
     public Preferences preferences;
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-    }
 
     protected void consumeResponse(AuthResource<User> userAuthResource) {
         switch (userAuthResource.status) {
