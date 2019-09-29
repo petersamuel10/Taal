@@ -38,7 +38,7 @@ public class ProfileFragment extends BaseFragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         ProfileViewModel viewModel = ViewModelProviders.of(this, providerFactory).get(ProfileViewModel.class);
         viewModel.getLiveData().observe(this, this::consumeResponse);
-        viewModel.getUserProfile();
+//        viewModel.getUserProfile();
     }
 
     private void consumeResponse(Resource<User> userResource) {

@@ -20,4 +20,7 @@
     <string name="mobile">Mobile</string>
     <string name="valid_phone">Enter a valid number</string>
     <string name="valid_name">Enter a valid user name</string>
+    <string name="home">Home</string>
+    <string name="my_requests">My Requests</string>
+    <string name="profile">Profile</string>
 </resources>

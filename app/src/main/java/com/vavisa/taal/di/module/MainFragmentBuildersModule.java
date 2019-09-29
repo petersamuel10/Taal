@@ -1,7 +1,9 @@
 package com.vavisa.taal.di.module;
 
 
+import com.vavisa.taal.ui.main.home.HomeFragment;
 import com.vavisa.taal.ui.main.profile.ProfileFragment;
+import com.vavisa.taal.ui.main.requests.RequestsFragment;
 
 import dagger.Module;
 import dagger.android.ContributesAndroidInjector;
@@ -10,6 +12,11 @@ import dagger.android.ContributesAndroidInjector;
 abstract class MainFragmentBuildersModule {
 
     @ContributesAndroidInjector
-    abstract ProfileFragment contributeProfileFragment();
+    abstract HomeFragment contributeHomeFragment();
 
+    @ContributesAndroidInjector
+    abstract RequestsFragment contributeRequestsFragment();
+
+    @ContributesAndroidInjector
+    abstract ProfileFragment contributeProfileFragment();
 }
