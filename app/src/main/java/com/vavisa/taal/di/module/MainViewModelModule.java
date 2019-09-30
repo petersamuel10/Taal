@@ -5,6 +5,7 @@ import androidx.lifecycle.ViewModel;
 
 import com.vavisa.taal.di.util.ViewModelKey;
 import com.vavisa.taal.ui.main.home.HomeViewModel;
+import com.vavisa.taal.ui.main.home.request.AddRequestViewModel;
 import com.vavisa.taal.ui.main.profile.ProfileViewModel;
 
 import dagger.Binds;
@@ -18,6 +19,11 @@ public abstract class MainViewModelModule {
     @IntoMap
     @ViewModelKey(HomeViewModel.class)
     public abstract ViewModel bindHomeViewModel(HomeViewModel viewModel);
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(AddRequestViewModel.class)
+    public abstract ViewModel bindAddRequestViewModel(AddRequestViewModel viewModel);
 
     @Binds
     @IntoMap

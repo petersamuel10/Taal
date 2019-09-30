@@ -34,7 +34,7 @@ public class NavigationEventHandler {
                 break;
         }
         if (fragment != null) {
-            activity.getSupportFragmentManager().beginTransaction().replace(R.id.content, fragment).commit();
+            activity.replaceFragment(fragment);
         }
         return true;
     }

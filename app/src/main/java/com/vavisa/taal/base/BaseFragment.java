@@ -2,18 +2,15 @@ package com.vavisa.taal.base;
 
 import android.widget.Toast;
 
-import com.vavisa.taal.data.model.Category;
-import com.vavisa.taal.data.network.main.Resource;
 import com.vavisa.taal.util.JsonParser;
 import com.vavisa.taal.util.ProgressDialog;
 
-import java.util.List;
 
 import dagger.android.support.DaggerFragment;
 import okhttp3.ResponseBody;
 import retrofit2.HttpException;
 
-public abstract class BaseFragment extends DaggerFragment {
+public class BaseFragment extends DaggerFragment {
 
     public BaseFragment() {}
 
@@ -36,7 +33,5 @@ public abstract class BaseFragment extends DaggerFragment {
         } else
             showMessage(error.getMessage());
     }
-
-
 
 }

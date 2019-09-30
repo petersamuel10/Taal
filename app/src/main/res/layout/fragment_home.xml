@@ -74,12 +74,13 @@
         <import type="com.vavisa.taal.data.model.Category"/>
 
         <variable
+            name="categories"
+            type="List&lt;Category>" />
+
+        <variable
             name="handler"
             type="com.vavisa.taal.ui.main.home.SearchEventHandler" />
 
-        <variable
-            name="categories"
-            type="List&lt;Category>" />
     </data>
 
 </layout>

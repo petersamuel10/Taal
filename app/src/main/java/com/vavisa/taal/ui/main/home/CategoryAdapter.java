@@ -10,11 +10,14 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.vavisa.taal.R;
 import com.vavisa.taal.data.model.Category;
 import com.vavisa.taal.databinding.CategoryItemBinding;
+import com.vavisa.taal.ui.main.home.request.AddRequestFragment;
+import com.vavisa.taal.ui.main.navigation.NavigationActivity;
 
 import java.util.List;
 
 public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHolder>{
 
+    private NavigationActivity activity;
     private List<Category> categories;
 
     CategoryAdapter(List<Category> categories) {
@@ -32,11 +35,20 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHo
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         holder.itemBinding.setCategory(categories.get(position));
+        holder.itemBinding.setClickListener( v -> {
+            activity.addFragment(new AddRequestFragment());
+        });
     }
 
     @Override
     public int getItemCount() {
         return categories.size();
+    }
+
+    @Override
+    public void onAttachedToRecyclerView(@NonNull RecyclerView recyclerView) {
+        super.onAttachedToRecyclerView(recyclerView);
+        activity = (NavigationActivity) recyclerView.getContext();
     }
 
     class ViewHolder extends RecyclerView.ViewHolder {

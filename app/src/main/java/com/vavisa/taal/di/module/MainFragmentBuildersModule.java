@@ -2,6 +2,7 @@ package com.vavisa.taal.di.module;
 
 
 import com.vavisa.taal.ui.main.home.HomeFragment;
+import com.vavisa.taal.ui.main.home.request.AddRequestFragment;
 import com.vavisa.taal.ui.main.profile.ProfileFragment;
 import com.vavisa.taal.ui.main.requests.RequestsFragment;
 
@@ -13,6 +14,9 @@ abstract class MainFragmentBuildersModule {
 
     @ContributesAndroidInjector
     abstract HomeFragment contributeHomeFragment();
+
+    @ContributesAndroidInjector
+    abstract AddRequestFragment contributeAddRequestFragment();
 
     @ContributesAndroidInjector
     abstract RequestsFragment contributeRequestsFragment();
