@@ -1,4 +1,4 @@
-package com.vavisa.taal.ui.main;
+package com.vavisa.taal.ui.main.navigation;
 
 import android.view.MenuItem;
 
@@ -12,9 +12,9 @@ import com.vavisa.taal.ui.main.requests.RequestsFragment;
 
 public class NavigationEventHandler {
 
-    private MainActivity activity;
+    private NavigationActivity activity;
 
-    NavigationEventHandler(MainActivity activity) {
+    NavigationEventHandler(NavigationActivity activity) {
         this.activity = activity;
     }
 

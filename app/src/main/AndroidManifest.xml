@@ -13,10 +13,10 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".ui.auth.AuthActivity"></activity>
+        <activity android:name=".ui.auth.base.AuthActivity"></activity>
         <activity android:name=".ui.auth.register.RegisterActivity" />
         <activity android:name=".ui.auth.login.LoginActivity" />
-        <activity android:name=".ui.main.MainActivity" />
+        <activity android:name=".ui.main.navigation.NavigationActivity" />
         <activity android:name=".base.BaseActivity" />
         <activity android:name=".SplashActivity">
             <intent-filter>

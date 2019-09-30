@@ -1,4 +1,4 @@
-package com.vavisa.taal.ui.auth;
+package com.vavisa.taal.ui.auth.base;
 
 import android.content.Context;
 

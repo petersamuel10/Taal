@@ -1,4 +1,4 @@
-package com.vavisa.taal.ui.main;
+package com.vavisa.taal.ui.main.navigation;
 
 import androidx.databinding.BindingAdapter;
 

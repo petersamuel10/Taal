@@ -7,7 +7,7 @@ import androidx.lifecycle.ViewModelProviders;
 
 import com.vavisa.taal.R;
 import com.vavisa.taal.databinding.ActivityLoginBinding;
-import com.vavisa.taal.ui.auth.AuthActivity;
+import com.vavisa.taal.ui.auth.base.AuthActivity;
 
 public class LoginActivity extends AuthActivity {
 

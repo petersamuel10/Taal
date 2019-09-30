@@ -7,7 +7,7 @@
         android:layout_height="match_parent"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:orientation="vertical"
-        tools:context=".ui.main.MainActivity">
+        tools:context=".ui.main.navigation.NavigationActivity">
 
         <FrameLayout
             android:id="@+id/content"
@@ -28,7 +28,7 @@
         <import type="com.vavisa.taal.R"/>
         <variable
             name="handler"
-            type="com.vavisa.taal.ui.main.NavigationEventHandler" />
+            type="com.vavisa.taal.ui.main.navigation.NavigationEventHandler" />
     </data>
 
 </layout>

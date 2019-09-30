@@ -6,7 +6,7 @@ import androidx.lifecycle.MutableLiveData;
 
 import com.vavisa.taal.data.model.SessionManager;
 import com.vavisa.taal.data.repository.RegisterRepository;
-import com.vavisa.taal.ui.auth.AuthViewModel;
+import com.vavisa.taal.ui.auth.base.AuthViewModel;
 import com.vavisa.taal.util.FormValidation;
 import com.vavisa.taal.util.Preferences;
 

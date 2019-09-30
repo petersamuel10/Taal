@@ -2,10 +2,10 @@ package com.vavisa.taal.di.module;
 
 import com.vavisa.taal.di.scope.AuthScope;
 import com.vavisa.taal.di.scope.MainScope;
-import com.vavisa.taal.ui.auth.AuthActivity;
+import com.vavisa.taal.ui.auth.base.AuthActivity;
 import com.vavisa.taal.ui.auth.login.LoginActivity;
 import com.vavisa.taal.ui.auth.register.RegisterActivity;
-import com.vavisa.taal.ui.main.MainActivity;
+import com.vavisa.taal.ui.main.navigation.NavigationActivity;
 
 import dagger.Module;
 import dagger.android.ContributesAndroidInjector;
@@ -27,6 +27,6 @@ public abstract class ActivityBuildersModule {
 
     @MainScope
     @ContributesAndroidInjector(modules = {MainFragmentBuildersModule.class, MainViewModelModule.class, MainModule.class})
-    abstract MainActivity contributeMainActivity();
+    abstract NavigationActivity contributeMainActivity();
 
 }
