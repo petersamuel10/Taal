@@ -28,6 +28,6 @@ public class HomeFragment extends BaseFragment {
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        homeBinding.setHandler(new HomeEventHandler());
+        homeBinding.setHandler(new SearchEventHandler());
     }
 }

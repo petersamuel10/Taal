@@ -2,18 +2,20 @@ package com.vavisa.taal.ui.main.home;
 
 import androidx.appcompat.widget.SearchView;
 import androidx.databinding.BindingAdapter;
+import androidx.databinding.adapters.SearchViewBindingAdapter;
 
-public class SearchViewBindingAdapter {
+public class SearchBindingAdapter {
 
     @BindingAdapter(value = {"onQueryTextSubmit", "onQueryTextChange"}, requireAll = false)
     public static void setQueryListener(SearchView searchView,
-                                 androidx.databinding.adapters.SearchViewBindingAdapter.OnQueryTextSubmit onQueryTextSubmit,
-                                 androidx.databinding.adapters.SearchViewBindingAdapter.OnQueryTextChange onQueryTextChange) {
+                                 SearchViewBindingAdapter.OnQueryTextSubmit onQueryTextSubmit,
+                                 SearchViewBindingAdapter.OnQueryTextChange onQueryTextChange) {
 
         if (onQueryTextChange == null && onQueryTextSubmit == null) {
             searchView.setOnQueryTextListener(null);
             return;
         }
+
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {

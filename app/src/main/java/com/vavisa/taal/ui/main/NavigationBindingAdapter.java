@@ -4,7 +4,7 @@ import androidx.databinding.BindingAdapter;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-public class BottomNavigationViewBindingAdapter {
+public class NavigationBindingAdapter {
 
     @BindingAdapter("selectedItem")
     public static void setSelectedItem(

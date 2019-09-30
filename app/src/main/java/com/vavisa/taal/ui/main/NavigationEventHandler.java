@@ -10,11 +10,11 @@ import com.vavisa.taal.ui.main.home.HomeFragment;
 import com.vavisa.taal.ui.main.profile.ProfileFragment;
 import com.vavisa.taal.ui.main.requests.RequestsFragment;
 
-public class MainEventHandler {
+public class NavigationEventHandler {
 
     private MainActivity activity;
 
-    MainEventHandler(MainActivity activity) {
+    NavigationEventHandler(MainActivity activity) {
         this.activity = activity;
     }
 

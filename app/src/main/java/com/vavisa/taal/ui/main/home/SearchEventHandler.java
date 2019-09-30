@@ -2,7 +2,7 @@ package com.vavisa.taal.ui.main.home;
 
 import android.util.Log;
 
-public class HomeEventHandler {
+public class SearchEventHandler {
 
     public boolean onQueryTextSubmit(String query) {
         Log.d("stringPrint query", query);

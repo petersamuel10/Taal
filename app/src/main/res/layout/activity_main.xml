@@ -28,7 +28,7 @@
         <import type="com.vavisa.taal.R"/>
         <variable
             name="handler"
-            type="com.vavisa.taal.ui.main.MainEventHandler" />
+            type="com.vavisa.taal.ui.main.NavigationEventHandler" />
     </data>
 
 </layout>

@@ -70,7 +70,7 @@
     <data>
         <variable
             name="handler"
-            type="com.vavisa.taal.ui.main.home.HomeEventHandler" />
+            type="com.vavisa.taal.ui.main.home.SearchEventHandler" />
     </data>
 
 </layout>

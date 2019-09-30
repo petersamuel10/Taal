@@ -20,6 +20,6 @@ public class MainActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ActivityMainBinding mainBinding = DataBindingUtil.setContentView(this, R.layout.activity_main);
-        mainBinding.setHandler(new MainEventHandler(this));
+        mainBinding.setHandler(new NavigationEventHandler(this));
     }
 }
