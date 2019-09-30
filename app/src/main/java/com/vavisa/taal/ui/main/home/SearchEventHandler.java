@@ -1,23 +1,21 @@
 package com.vavisa.taal.ui.main.home;
 
-import android.util.Log;
-
 public class SearchEventHandler {
 
-    public boolean onQueryTextSubmit(String query) {
-        Log.d("stringPrint query", query);
-        return false;
+    private HomeViewModel viewModel;
+
+    SearchEventHandler(HomeViewModel viewModel) {
+        this.viewModel = viewModel;
     }
 
-    public boolean onQueryTextChange(String newText){
-        Log.d("stringPrint newText", newText);
+    public boolean onQueryTextSubmit(String query) {
+        viewModel.searchCategories(query);
         return false;
     }
 
     public boolean onClose() {
-        Log.d("stringPrint onClose", "closed");
+        viewModel.resetCategories();
         return false;
     }
-
 
 }

@@ -9,14 +9,17 @@ import com.vavisa.taal.data.model.SessionManager;
 import com.vavisa.taal.data.network.auth.AuthResource;
 import com.vavisa.taal.data.network.interceptor.InternetConnectionListener;
 import com.vavisa.taal.ui.auth.login.LoginActivity;
+import com.vavisa.taal.util.JsonParser;
 import com.vavisa.taal.util.Preferences;
 import com.vavisa.taal.util.ProgressDialog;
 
 import javax.inject.Inject;
 
 import dagger.android.support.DaggerAppCompatActivity;
+import okhttp3.ResponseBody;
+import retrofit2.HttpException;
 
-public class BaseActivity extends DaggerAppCompatActivity implements InternetConnectionListener {
+public class BaseActivity extends DaggerAppCompatActivity {
 
     @Inject
     public SessionManager sessionManager;
@@ -58,8 +61,12 @@ public class BaseActivity extends DaggerAppCompatActivity implements InternetCon
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
     }
 
-    @Override
-    public void onInternetUnavailable() {
-        Log.d("http","No network available");
+    public void showErrorMessage(Throwable error) {
+        if (error instanceof HttpException) {
+            ResponseBody responseBody = ((HttpException) error).response().errorBody();
+            showMessage(JsonParser.getErrorMessage(responseBody));
+        } else
+            showMessage(error.getMessage());
     }
+
 }

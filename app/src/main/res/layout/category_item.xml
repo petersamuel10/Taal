@@ -1,10 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
-<TextView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:text="Plumber"
-    android:gravity="center"
-    android:textColor="@color/white"
-    android:fontFamily="sans-serif-medium"
-    android:textSize="@dimen/_20sdp"
-    android:background="@drawable/blue_round_corner"/>
+
+<layout>
+
+    <TextView xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_100sdp"
+        android:text="@{category.name}"
+        android:gravity="center"
+        android:textColor="@color/white"
+        android:fontFamily="sans-serif-medium"
+        android:textSize="@dimen/_15sdp"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:layout_marginStart="@dimen/_10sdp"
+        android:layout_marginEnd="@dimen/_10sdp"
+        android:background="@drawable/blue_round_corner"/>
+
+    <data>
+        <variable
+            name="category"
+            type="com.vavisa.taal.data.model.Category" />
+    </data>
+
+</layout>

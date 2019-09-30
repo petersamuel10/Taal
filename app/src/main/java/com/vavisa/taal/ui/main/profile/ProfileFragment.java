@@ -51,7 +51,7 @@ public class ProfileFragment extends BaseFragment {
                 hideProgress();
                 if (userResource.error instanceof HttpException) {
                     ResponseBody responseBody = ((HttpException) userResource.error).response().errorBody();
-                    showMessage(JsonParser.getMessage(responseBody));
+                    showMessage(JsonParser.getErrorMessage(responseBody));
                 } else
                     showMessage(userResource.error.getMessage());
                 break;

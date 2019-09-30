@@ -45,7 +45,7 @@ public abstract class AuthViewModel extends ViewModel {
                     AuthResponse errorResponse = new AuthResponse();
                     if (throwable instanceof HttpException) {
                         ResponseBody responseBody = ((HttpException) throwable).response().errorBody();
-                        errorResponse.setMessage((JsonParser.getMessage(responseBody)));
+                        errorResponse.setMessage((JsonParser.getErrorMessage(responseBody)));
                     }
                     return errorResponse;
                 })

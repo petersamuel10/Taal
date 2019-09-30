@@ -2,6 +2,7 @@ package com.vavisa.taal.ui.main.home;
 
 import android.os.Bundle;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,13 +10,26 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.databinding.DataBindingUtil;
+import androidx.lifecycle.ViewModelProviders;
 
 import com.vavisa.taal.R;
 import com.vavisa.taal.base.BaseFragment;
+import com.vavisa.taal.data.model.Category;
+import com.vavisa.taal.data.network.main.Resource;
 import com.vavisa.taal.databinding.FragmentHomeBinding;
+import com.vavisa.taal.di.util.ViewModelProviderFactory;
+
+import java.util.List;
+import java.util.Objects;
+
+import javax.inject.Inject;
 
 public class HomeFragment extends BaseFragment {
 
+    @Inject
+    ViewModelProviderFactory providerFactory;
+
+    protected HomeViewModel viewModel;
     private FragmentHomeBinding homeBinding;
 
     public HomeFragment() {}
@@ -28,6 +42,34 @@ public class HomeFragment extends BaseFragment {
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        homeBinding.setHandler(new SearchEventHandler());
+        viewModel = ViewModelProviders.of(this, providerFactory).get(HomeViewModel.class);
+        viewModel.getLiveData().observe(this, this::consumeCategoryResponse);
+        viewModel.getSearchLiveData().observe(this, this::bindCategories);
+
+        homeBinding.setHandler(new SearchEventHandler(viewModel));
+        viewModel.getCategories();
     }
+
+    private void consumeCategoryResponse(Resource<List<Category>> listResource) {
+        switch (listResource.status) {
+            case LOADING:
+                showProgress();
+                break;
+
+            case ERROR:
+                hideProgress();
+                showErrorMessage(listResource.error);
+                break;
+
+            case SUCCESS:
+                hideProgress();
+                bindCategories(Objects.requireNonNull(listResource.data));
+                break;
+        }
+    }
+
+    private void bindCategories(List<Category> data) {
+        homeBinding.setCategories(data);
+    }
+
 }

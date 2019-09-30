@@ -49,7 +49,6 @@
                         android:gravity="center"
                         app:queryHint="@string/search_by_category"
                         tools:targetApi="lollipop"
-                        app:onQueryTextChange="@{handler::onQueryTextChange}"
                         app:onQueryTextSubmit="@{handler::onQueryTextSubmit}"
                         app:onClose="@{handler::onClose}"/>
 
@@ -62,15 +61,25 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/category_recycler"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:categoriesList="@{categories}"
             app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
     <data>
+
+        <import type="java.util.List" />
+        <import type="com.vavisa.taal.data.model.Category"/>
+
         <variable
             name="handler"
             type="com.vavisa.taal.ui.main.home.SearchEventHandler" />
+
+        <variable
+            name="categories"
+            type="List&lt;Category>" />
     </data>
 
 </layout>
