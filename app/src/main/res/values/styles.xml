@@ -28,4 +28,9 @@
         <item name="android:fontFamily">sans-serif-light</item>
     </style>
 
+    <style name="Normal">
+        <item name="android:textColor">@color/white</item>
+        <item name="android:fontFamily">sans-serif</item>
+    </style>
+
 </resources>

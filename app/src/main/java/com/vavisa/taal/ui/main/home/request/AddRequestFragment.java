@@ -49,14 +49,11 @@ public class AddRequestFragment extends BaseFragment {
         RequestView spinner = new RequestView();
         spinner.setType("select");
         spinner.setValue(values);
+
         viewsList.add(viewFactory.createView(text));
         viewsList.add(viewFactory.createView(spinner));
         binding.setViewsList(viewsList);
 
-        binding.valuesButton.setOnClickListener(v -> {
-            for (DynamicView dynamicView: binding.getViewsList()) {
-                showMessage(dynamicView.getValue());
-            }
-        });
+
     }
 }
