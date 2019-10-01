@@ -12,7 +12,9 @@ import android.view.ViewGroup;
 
 import com.vavisa.taal.R;
 import com.vavisa.taal.base.BaseFragment;
+import com.vavisa.taal.data.model.RequestView;
 import com.vavisa.taal.databinding.FragmentAddRequestBinding;
+import com.vavisa.taal.util.dynamicViews.DynamicView;
 import com.vavisa.taal.util.dynamicViews.DynamicViewFactory;
 
 import java.util.ArrayList;
@@ -32,9 +34,29 @@ public class AddRequestFragment extends BaseFragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         DynamicViewFactory viewFactory = new DynamicViewFactory(getActivity());
-        ArrayList<View> viewsList = new ArrayList<>();
-        viewsList.add(viewFactory.getView("text", "Room size"));
-        viewsList.add(viewFactory.getView("text", "Paint Color"));
+        ArrayList<DynamicView> viewsList = new ArrayList<>();
+        RequestView text = new RequestView();
+        text.setLabel("Room Size");
+        text.setType("text");
+
+        ArrayList<String> values = new ArrayList<>();
+        values.add("first");
+        values.add("second");
+        values.add("third");
+        values.add("fourth");
+        values.add("fifth");
+
+        RequestView spinner = new RequestView();
+        spinner.setType("select");
+        spinner.setValue(values);
+        viewsList.add(viewFactory.createView(text));
+        viewsList.add(viewFactory.createView(spinner));
         binding.setViewsList(viewsList);
+
+        binding.valuesButton.setOnClickListener(v -> {
+            for (DynamicView dynamicView: binding.getViewsList()) {
+                showMessage(dynamicView.getValue());
+            }
+        });
     }
 }

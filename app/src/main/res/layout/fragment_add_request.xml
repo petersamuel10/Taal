@@ -3,22 +3,42 @@
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
-        android:id="@+id/parent_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        app:addViews="@{viewsList}"
         android:background="@color/white"
-        tools:context=".ui.main.home.request.AddRequestFragment" />
+        android:orientation="vertical"
+        tools:context=".ui.main.home.request.AddRequestFragment">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:id="@+id/parent_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:addViews="@{viewsList}" />
+
+        </ScrollView>
+
+        <Button
+            android:id="@+id/values_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Get Values" />
+
+    </LinearLayout>
 
     <data>
 
-        <import type="android.view.View"/>
-        <import type="java.util.ArrayList"/>
+        <import type="com.vavisa.taal.util.dynamicViews.DynamicView" />
+
+        <import type="java.util.ArrayList" />
 
         <variable
             name="viewsList"
-            type="ArrayList&lt;View>" />
+            type="ArrayList&lt;DynamicView>" />
     </data>
 
 </layout>
