@@ -12,6 +12,8 @@ public class RequestBindingAdapter {
 
     @BindingAdapter("addViews")
     public static void addDynamicView(LinearLayout layout, ArrayList<DynamicView> views) {
+        if (views == null)
+            return;
         for (DynamicView dynamicView: views) {
             layout.addView(dynamicView.getView());
         }

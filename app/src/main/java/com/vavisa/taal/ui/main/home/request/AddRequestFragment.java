@@ -5,6 +5,7 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.databinding.DataBindingUtil;
+import androidx.lifecycle.ViewModelProviders;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,14 +13,23 @@ import android.view.ViewGroup;
 
 import com.vavisa.taal.R;
 import com.vavisa.taal.base.BaseFragment;
-import com.vavisa.taal.data.model.RequestView;
+import com.vavisa.taal.data.model.Parameter;
+import com.vavisa.taal.data.network.main.Resource;
 import com.vavisa.taal.databinding.FragmentAddRequestBinding;
+import com.vavisa.taal.di.util.ViewModelProviderFactory;
 import com.vavisa.taal.util.dynamicViews.DynamicView;
 import com.vavisa.taal.util.dynamicViews.DynamicViewFactory;
 
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
+
+import javax.inject.Inject;
 
 public class AddRequestFragment extends BaseFragment {
+
+    @Inject
+    ViewModelProviderFactory providerFactory;
 
     private FragmentAddRequestBinding binding;
 
@@ -33,27 +43,35 @@ public class AddRequestFragment extends BaseFragment {
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        AddRequestViewModel viewModel = ViewModelProviders.of(Objects.requireNonNull(getActivity()), providerFactory).get(AddRequestViewModel.class);
+        viewModel.getLiveData().observe(this, this::consumeResponse);
+        viewModel.getRequestParameters();
+    }
+
+    private void consumeResponse(Resource<List<Parameter>> listResource) {
+        switch (listResource.status){
+            case LOADING:
+                showProgress();
+                break;
+
+            case ERROR:
+                hideProgress();
+                showErrorMessage(listResource.error);
+                break;
+
+            case SUCCESS:
+                hideProgress();
+                createRequestView(Objects.requireNonNull(listResource.data));
+                break;
+        }
+    }
+
+    private void createRequestView(List<Parameter> parameters) {
         DynamicViewFactory viewFactory = new DynamicViewFactory(getActivity());
         ArrayList<DynamicView> viewsList = new ArrayList<>();
-        RequestView text = new RequestView();
-        text.setLabel("Room Size");
-        text.setType("text");
-
-        ArrayList<String> values = new ArrayList<>();
-        values.add("first");
-        values.add("second");
-        values.add("third");
-        values.add("fourth");
-        values.add("fifth");
-
-        RequestView spinner = new RequestView();
-        spinner.setType("select");
-        spinner.setValue(values);
-
-        viewsList.add(viewFactory.createView(text));
-        viewsList.add(viewFactory.createView(spinner));
+        for (Parameter parameter: parameters){
+            viewsList.add(viewFactory.createView(parameter));
+        }
         binding.setViewsList(viewsList);
-
-
     }
 }

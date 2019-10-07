@@ -1,6 +1,7 @@
 package com.vavisa.taal.util;
 
 public enum CodingKeys {
+    ACCEPT_LANGUAGE("Accept-Language"),
     AUTHORIZATION("Authorization"),
     VERSION_KEY("Version"),
     ACCESS_TOKEN("access_token"),

@@ -6,7 +6,7 @@
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/white"
+        android:background="@color/white_two"
         android:orientation="vertical"
         tools:context=".ui.main.home.request.AddRequestFragment">
 
@@ -51,11 +51,33 @@
             android:layout_height="wrap_content">
 
             <LinearLayout
-                android:id="@+id/parent_view"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
                 android:orientation="vertical"
-                app:addViews="@{viewsList}" />
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <LinearLayout
+                    android:id="@+id/parent_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    app:addViews="@{viewsList}" />
+
+                <com.google.android.material.button.MaterialButton
+                    style="@style/Normal"
+                    android:text="@string/submit"
+                    android:textSize="@dimen/_15ssp"
+                    android:textAllCaps="false"
+                    android:layout_gravity="bottom|center"
+                    android:layout_marginStart="@dimen/_13sdp"
+                    android:layout_marginEnd="@dimen/_13sdp"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:layout_marginBottom="@dimen/_10sdp"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_50sdp"
+                    app:backgroundTint="@color/pinkish_orange"/>
+
+            </LinearLayout>
+
 
         </androidx.core.widget.NestedScrollView>
 

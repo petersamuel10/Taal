@@ -2,7 +2,7 @@ package com.vavisa.taal.util.dynamicViews;
 
 import android.content.Context;
 
-import com.vavisa.taal.data.model.RequestView;
+import com.vavisa.taal.data.model.Parameter;
 
 public class DynamicViewFactory {
 
@@ -12,12 +12,14 @@ public class DynamicViewFactory {
         this.context = context;
     }
 
-    public DynamicView createView(RequestView requestView) {
-        switch (requestView.getType()) {
+    public DynamicView createView(Parameter parameter) {
+        switch (parameter.getType()) {
             case "text":
-                return new DynamicEditText(context, requestView.getLabel());
+                return new DynamicEditText(context, parameter.getLabel(), true);
+            case "textarea":
+                return new DynamicEditText(context, parameter.getLabel(), false);
             case "select":
-                return new DynamicSpinner(context, requestView.getValue());
+                return new DynamicSpinner(context, parameter.getValue());
         }
         return null;
     }

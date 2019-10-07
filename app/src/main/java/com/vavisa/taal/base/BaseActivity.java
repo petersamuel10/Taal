@@ -5,10 +5,12 @@ import android.os.Bundle;
 import android.util.Log;
 import android.widget.Toast;
 
+import com.vavisa.taal.R;
 import com.vavisa.taal.data.model.SessionManager;
 import com.vavisa.taal.data.network.auth.AuthResource;
 import com.vavisa.taal.data.network.interceptor.InternetConnectionListener;
 import com.vavisa.taal.ui.auth.login.LoginActivity;
+import com.vavisa.taal.util.CodingKeys;
 import com.vavisa.taal.util.JsonParser;
 import com.vavisa.taal.util.Preferences;
 import com.vavisa.taal.util.ProgressDialog;
@@ -30,6 +32,7 @@ public class BaseActivity extends DaggerAppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        preferences.putString(CodingKeys.ACCEPT_LANGUAGE.getKey(), getResources().getString(R.string.language_code));
         subscribeObservers();
     }
 

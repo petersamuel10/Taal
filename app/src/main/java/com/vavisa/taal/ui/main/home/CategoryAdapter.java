@@ -5,12 +5,14 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.databinding.DataBindingUtil;
+import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.vavisa.taal.R;
 import com.vavisa.taal.data.model.Category;
 import com.vavisa.taal.databinding.CategoryItemBinding;
 import com.vavisa.taal.ui.main.home.request.AddRequestFragment;
+import com.vavisa.taal.ui.main.home.request.AddRequestViewModel;
 import com.vavisa.taal.ui.main.navigation.NavigationActivity;
 
 import java.util.List;
@@ -36,6 +38,9 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHo
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         holder.itemBinding.setCategory(categories.get(position));
         holder.itemBinding.setClickListener( v -> {
+            ViewModelProviders.of(activity)
+                    .get(AddRequestViewModel.class)
+                    .setSelectedCategory(categories.get(position));
             activity.addFragment(new AddRequestFragment());
         });
     }

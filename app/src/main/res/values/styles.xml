@@ -33,4 +33,9 @@
         <item name="android:fontFamily">sans-serif</item>
     </style>
 
+    <style name="ParameterText">
+        <item name="android:textSize">@dimen/_13ssp</item>
+        <item name="android:fontFamily">sans-serif</item>
+    </style>
+
 </resources>

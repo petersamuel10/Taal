@@ -31,7 +31,9 @@ public class HeaderInterceptor implements Interceptor {
     public Response intercept(@NotNull Chain chain) throws IOException {
         Request request = chain.request();
         Headers.Builder headersBuilder = request.headers().newBuilder();
+        headersBuilder.add(CodingKeys.ACCEPT_LANGUAGE.getKey(),  preferences.getString(CodingKeys.ACCEPT_LANGUAGE.getKey()));
         headersBuilder.add(CodingKeys.VERSION_KEY.getKey(),  context.getResources().getString(R.string.version_prefix).concat(BuildConfig.VERSION_NAME));
+
         if (preferences.getString(CodingKeys.ACCESS_TOKEN.getKey()) != null)
             headersBuilder.add(CodingKeys.AUTHORIZATION.getKey(), preferences.getString(CodingKeys.ACCESS_TOKEN.getKey()));
 
