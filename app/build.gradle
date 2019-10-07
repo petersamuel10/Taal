@@ -80,6 +80,7 @@ dependencies {
 
     /*Unit testing*/
     testImplementation 'junit:junit:4.12'
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.3.2'
     testImplementation "android.arch.core:core-testing:$lifecycle_version"
     testImplementation "org.mockito:mockito-core:$mockitoVersion"
     androidTestImplementation 'androidx.test:runner:1.2.0'
