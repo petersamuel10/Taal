@@ -21,7 +21,7 @@ public class Resource<T> {
         this.error = error;
     }
 
-    public static <T> Resource<T> success (@Nullable T data) {
+    public static <T> Resource<T> success(@Nullable T data) {
         return new Resource<>(Status.SUCCESS, data, null);
     }
 
@@ -33,5 +33,30 @@ public class Resource<T> {
         return new Resource<>(Status.LOADING, null, null);
     }
 
-    public enum Status { SUCCESS, ERROR, LOADING}
+    public enum Status {SUCCESS, ERROR, LOADING}
+
+    @Override
+    public boolean equals(@Nullable Object obj) {
+        if (obj.getClass() != getClass() || obj.getClass() != Resource.class) {
+            return false;
+        }
+
+        Resource<T> resource = (Resource) obj;
+
+        if(resource.status != this.status){
+            return false;
+        }
+
+        if(this.data != null){
+            if(resource.data != this.data){
+                return false;
+            }
+        }
+
+        if(this.error != null){
+            return resource.error == this.error;
+        }
+
+        return true;
+    }
 }

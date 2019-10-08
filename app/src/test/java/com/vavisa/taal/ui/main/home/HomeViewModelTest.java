@@ -1,18 +1,17 @@
 package com.vavisa.taal.ui.main.home;
 
-import androidx.annotation.UiThread;
 import androidx.lifecycle.Lifecycle;
 import androidx.lifecycle.LifecycleOwner;
 import androidx.lifecycle.LifecycleRegistry;
 import androidx.lifecycle.Observer;
 
 import com.vavisa.taal.InstantExecutorExtension;
-import com.vavisa.taal.LiveDataTestUtil;
 import com.vavisa.taal.data.model.Category;
-import com.vavisa.taal.data.model.User;
 import com.vavisa.taal.data.network.main.Resource;
 import com.vavisa.taal.data.repository.HomeRepository;
 
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -23,12 +22,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 import io.reactivex.Observable;
+import io.reactivex.Single;
 import io.reactivex.android.plugins.RxAndroidPlugins;
 import io.reactivex.schedulers.Schedulers;
-import io.reactivex.schedulers.TestScheduler;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.verifyNoMoreInteractions;
 import static org.mockito.Mockito.when;
 
 @ExtendWith({InstantExecutorExtension.class})
@@ -60,15 +60,33 @@ class HomeViewModelTest {
     @Test
     void testApiFetchDataSuccess() {
         final List<Category> categories = new ArrayList<>();
-        categories.add(new Category());
-
         final Observable<List<Category>> returnedData = Observable.just(categories);
-        when(homeRepository.getCategories()).thenReturn(returnedData);
 
+        when(homeRepository.getCategories()).thenReturn(returnedData);
         homeViewModel.getCategories();
-//
-//        verify(observer).onChanged(Resource.loading());
-//        verify(observer).onChanged(Resource.success(categories));
+
+        verify(observer).onChanged(Resource.loading());
+        verify(observer).onChanged(Resource.success(categories));
+        verifyNoMoreInteractions(observer);
         assertEquals(Resource.success(categories), homeViewModel.getLiveData().getValue());
+    }
+
+    @Test
+    void testApiFetchDataError(){
+        final Throwable throwable = new Throwable();
+        final Observable<List<Category>> error = Observable.error(throwable);
+
+        when(homeRepository.getCategories()).thenReturn(error);
+        homeViewModel.getCategories();
+
+        verify(observer).onChanged(Resource.loading());
+        verify(observer).onChanged(Resource.error(throwable));
+        verifyNoMoreInteractions(observer);
+        assertEquals(Resource.error(throwable), homeViewModel.getLiveData().getValue());
+    }
+
+    @AfterEach
+    void tearDown() {
+        homeRepository = null;
     }
 }
