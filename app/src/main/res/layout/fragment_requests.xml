@@ -1,10 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context=".ui.main.requests.RequestsFragment">
+<layout xmlns:app="http://schemas.android.com/apk/res-auto">
 
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:context=".ui.main.requests.RequestsFragment">
 
-</LinearLayout>
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/status_tabs"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:pager="@{status_pager}"/>
+
+        <androidx.viewpager.widget.ViewPager
+            android:id="@+id/status_pager"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:adapter="@{pagerAdapter}"/>
+
+    </LinearLayout>
+
+    <data>
+        <variable
+            name="pagerAdapter"
+            type="androidx.fragment.app.FragmentPagerAdapter"/>
+    </data>
+</layout>

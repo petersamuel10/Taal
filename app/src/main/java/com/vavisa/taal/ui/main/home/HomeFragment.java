@@ -18,6 +18,7 @@ import com.vavisa.taal.data.model.Category;
 import com.vavisa.taal.data.network.main.Resource;
 import com.vavisa.taal.databinding.FragmentHomeBinding;
 import com.vavisa.taal.di.util.ViewModelProviderFactory;
+import com.vavisa.taal.util.dynamicViews.DynamicView;
 
 import java.util.List;
 import java.util.Objects;

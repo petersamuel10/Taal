@@ -13,6 +13,7 @@ import android.view.ViewGroup;
 
 import com.vavisa.taal.R;
 import com.vavisa.taal.base.BaseFragment;
+import com.vavisa.taal.data.model.CaseField;
 import com.vavisa.taal.data.model.Parameter;
 import com.vavisa.taal.data.network.main.Resource;
 import com.vavisa.taal.databinding.FragmentAddRequestBinding;
@@ -27,6 +28,8 @@ import java.util.Objects;
 import javax.inject.Inject;
 
 public class AddRequestFragment extends BaseFragment {
+
+    private ArrayList<CaseField> fields;
 
     @Inject
     ViewModelProviderFactory providerFactory;
@@ -69,9 +72,17 @@ public class AddRequestFragment extends BaseFragment {
     private void createRequestView(List<Parameter> parameters) {
         DynamicViewFactory viewFactory = new DynamicViewFactory(getActivity());
         ArrayList<DynamicView> viewsList = new ArrayList<>();
+        fields = new ArrayList<>();
         for (Parameter parameter: parameters){
             viewsList.add(viewFactory.createView(parameter));
+            CaseField field = new CaseField(parameter.getId());
+            fields.add(field);
         }
         binding.setViewsList(viewsList);
+    }
+
+    private boolean getCaseFields(){
+
+        return true;
     }
 }

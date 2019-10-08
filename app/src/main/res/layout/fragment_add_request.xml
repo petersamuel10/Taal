@@ -59,8 +59,14 @@
                     android:id="@+id/parent_view"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    app:addViews="@{viewsList}" />
+                    android:orientation="vertical" />
+
+<!--                <LinearLayout-->
+<!--                    android:id="@+id/parent_view"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:orientation="vertical"-->
+<!--                    app:addViews="@{viewsList}" />-->
 
                 <com.google.android.material.button.MaterialButton
                     style="@style/Normal"
@@ -77,7 +83,6 @@
                     app:backgroundTint="@color/pinkish_orange"/>
 
             </LinearLayout>
-
 
         </androidx.core.widget.NestedScrollView>
 

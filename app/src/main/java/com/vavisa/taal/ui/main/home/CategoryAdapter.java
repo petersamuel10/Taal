@@ -38,9 +38,9 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHo
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         holder.itemBinding.setCategory(categories.get(position));
         holder.itemBinding.setClickListener( v -> {
-            ViewModelProviders.of(activity)
-                    .get(AddRequestViewModel.class)
-                    .setSelectedCategory(categories.get(position));
+//            ViewModelProviders.of(activity)
+//                    .get(AddRequestViewModel.class)
+//                    .setSelectedCategory(categories.get(position));
             activity.addFragment(new AddRequestFragment());
         });
     }
