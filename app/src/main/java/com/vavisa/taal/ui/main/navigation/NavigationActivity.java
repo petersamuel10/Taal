@@ -19,18 +19,4 @@ public class NavigationActivity extends BaseActivity {
         mainBinding.setHandler(new NavigationEventHandler(this));
     }
 
-    public void addFragment(BaseFragment fragment){
-        getSupportFragmentManager()
-                .beginTransaction()
-                .add(R.id.content, fragment)
-                .addToBackStack(null)
-                .commit();
-    }
-
-    public void replaceFragment(BaseFragment fragment){
-        getSupportFragmentManager()
-                .beginTransaction()
-                .replace(R.id.content, fragment)
-                .commit();
-    }
 }

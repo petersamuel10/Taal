@@ -8,7 +8,7 @@ import com.vavisa.taal.R;
 import com.vavisa.taal.base.BaseFragment;
 import com.vavisa.taal.ui.main.home.HomeFragment;
 import com.vavisa.taal.ui.main.profile.ProfileFragment;
-import com.vavisa.taal.ui.main.requests.RequestsFragment;
+import com.vavisa.taal.ui.main.requests.MyRequestsFragment;
 
 public class NavigationEventHandler {
 
@@ -26,7 +26,7 @@ public class NavigationEventHandler {
                 break;
 
             case R.id.requests:
-                fragment = new RequestsFragment();
+                fragment = new MyRequestsFragment();
                 break;
 
             case R.id.profile:

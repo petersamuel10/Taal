@@ -52,24 +52,19 @@ public class BaseActivity extends DaggerAppCompatActivity {
         startActivity(new Intent(this, activity));
     }
 
-    public void showProgress() {
-        ProgressDialog.getInstance().show(this);
+    public void addFragment(BaseFragment fragment){
+        getSupportFragmentManager()
+                .beginTransaction()
+                .add(R.id.content, fragment)
+                .addToBackStack(null)
+                .commit();
     }
 
-    public void hideProgress() {
-        ProgressDialog.getInstance().dismiss();
-    }
-
-    public void showMessage(String message) {
-        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
-    }
-
-    public void showErrorMessage(Throwable error) {
-        if (error instanceof HttpException) {
-            ResponseBody responseBody = ((HttpException) error).response().errorBody();
-            showMessage(JsonParser.getErrorMessage(responseBody));
-        } else
-            showMessage(error.getMessage());
+    public void replaceFragment(BaseFragment fragment){
+        getSupportFragmentManager()
+                .beginTransaction()
+                .replace(R.id.content, fragment)
+                .commit();
     }
 
 }
