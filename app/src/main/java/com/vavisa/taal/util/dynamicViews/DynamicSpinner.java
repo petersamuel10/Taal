@@ -1,6 +1,7 @@
 package com.vavisa.taal.util.dynamicViews;
 
 import android.content.Context;
+import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.RelativeLayout;
 import android.widget.Spinner;
@@ -9,35 +10,39 @@ import com.vavisa.taal.R;
 
 import java.util.List;
 
-public class DynamicSpinner extends DynamicView<Spinner> {
+public class DynamicSpinner implements DynamicView {
+
+    private RelativeLayout relativeLayout;
+    private Spinner spinner;
 
     DynamicSpinner(Context context, List<String> values) {
-        setView(new Spinner(context));
-        initContainer(context);
-        getView().setPadding(30, 50, 50, 50);
-        addMargins();
-        initAdapter(context, values);
-    }
-
-    private void initContainer(Context context){
+        spinner = new Spinner(context);
         RelativeLayout.LayoutParams lp = new RelativeLayout.LayoutParams(
                 RelativeLayout.LayoutParams.MATCH_PARENT,
                 RelativeLayout.LayoutParams.MATCH_PARENT);
-        getView().setLayoutParams(lp);
-        RelativeLayout relativeLayout = new RelativeLayout(context);
+        spinner.setLayoutParams(lp);
+        relativeLayout = new RelativeLayout(context);
         relativeLayout.setBackgroundResource(R.drawable.whit_rounded_background);
-        relativeLayout.addView(getView());
+        relativeLayout.addView(spinner);
+        spinner.setPadding(30, 50, 50, 50);
+        ViewDecorator.addMargins(relativeLayout, 50, 50, 50, 0);
+        initAdapter(context, values);
     }
 
     private void initAdapter(Context context, List<String> values) {
         ArrayAdapter<String> adapter = new ArrayAdapter<>(context,
                 android.R.layout.simple_spinner_item, values);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        getView().setAdapter(adapter);
+        spinner.setAdapter(adapter);
+    }
+
+    @Override
+    public View getView() {
+        return relativeLayout;
     }
 
     @Override
     public String getValue() {
-        return getView().getSelectedItem().toString();
+        return spinner.getSelectedItem().toString();
     }
 }

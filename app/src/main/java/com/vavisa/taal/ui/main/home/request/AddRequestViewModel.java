@@ -30,9 +30,8 @@ public class AddRequestViewModel extends ViewModel {
         return liveData;
     }
 
-
-    void getRequestParameters() {
-        compositeDisposable.add(requestRepository.getCategoryParameters(2)
+    void getRequestParameters(Integer id) {
+        compositeDisposable.add(requestRepository.getCategoryParameters(id)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .doOnSubscribe(disposable -> liveData.setValue(Resource.loading()))

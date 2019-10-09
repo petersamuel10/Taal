@@ -43,7 +43,7 @@ public class HomeFragment extends BaseFragment {
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        viewModel = ViewModelProviders.of(this, providerFactory).get(HomeViewModel.class);
+        viewModel = ViewModelProviders.of(getActivity(), providerFactory).get(HomeViewModel.class);
         viewModel.getLiveData().observe(this, this::consumeCategoryResponse);
         viewModel.getSearchLiveData().observe(this, this::bindCategories);
         homeBinding.setHandler(new SearchEventHandler(viewModel));

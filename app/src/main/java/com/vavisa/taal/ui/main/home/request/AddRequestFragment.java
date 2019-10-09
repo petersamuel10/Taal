@@ -5,6 +5,7 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.databinding.DataBindingUtil;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
 import android.view.LayoutInflater;
@@ -14,10 +15,12 @@ import android.view.ViewGroup;
 import com.vavisa.taal.R;
 import com.vavisa.taal.base.BaseFragment;
 import com.vavisa.taal.data.model.CaseField;
+import com.vavisa.taal.data.model.Category;
 import com.vavisa.taal.data.model.Parameter;
 import com.vavisa.taal.data.network.main.Resource;
 import com.vavisa.taal.databinding.FragmentAddRequestBinding;
 import com.vavisa.taal.di.util.ViewModelProviderFactory;
+import com.vavisa.taal.ui.main.home.HomeViewModel;
 import com.vavisa.taal.util.dynamicViews.DynamicView;
 import com.vavisa.taal.util.dynamicViews.DynamicViewFactory;
 
@@ -34,6 +37,7 @@ public class AddRequestFragment extends BaseFragment {
     @Inject
     ViewModelProviderFactory providerFactory;
 
+    private AddRequestViewModel viewModel;
     private FragmentAddRequestBinding binding;
 
     public AddRequestFragment() {}
@@ -46,9 +50,18 @@ public class AddRequestFragment extends BaseFragment {
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        AddRequestViewModel viewModel = ViewModelProviders.of(Objects.requireNonNull(getActivity()), providerFactory).get(AddRequestViewModel.class);
+        viewModel = ViewModelProviders.of(this, providerFactory).get(AddRequestViewModel.class);
         viewModel.getLiveData().observe(this, this::consumeResponse);
-        viewModel.getRequestParameters();
+        observeSelectedCategory();
+    }
+
+    private void observeSelectedCategory() {
+        ViewModelProviders.of(getActivity(), providerFactory)
+                .get(HomeViewModel.class)
+                .getSelectedCategory()
+                .observe(this, category -> {
+                    viewModel.getRequestParameters(category.getId());
+                });
     }
 
     private void consumeResponse(Resource<List<Parameter>> listResource) {
