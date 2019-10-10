@@ -17,9 +17,6 @@ public class AuthActivity extends BaseActivity {
     @Inject
     public ViewModelProviderFactory providerFactory;
 
-    @Inject
-    public Preferences preferences;
-
     protected void consumeResponse(AuthResource<User> userAuthResource) {
         switch (userAuthResource.status) {
             case ERROR:

@@ -24,9 +24,6 @@ import retrofit2.HttpException;
 
 public class ProfileFragment extends BaseFragment {
 
-    @Inject
-    ViewModelProviderFactory providerFactory;
-
     public ProfileFragment() {}
 
     @Override

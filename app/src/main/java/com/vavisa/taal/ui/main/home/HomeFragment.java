@@ -2,7 +2,6 @@ package com.vavisa.taal.ui.main.home;
 
 import android.os.Bundle;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,18 +16,11 @@ import com.vavisa.taal.base.BaseFragment;
 import com.vavisa.taal.data.model.Category;
 import com.vavisa.taal.data.network.main.Resource;
 import com.vavisa.taal.databinding.FragmentHomeBinding;
-import com.vavisa.taal.di.util.ViewModelProviderFactory;
-import com.vavisa.taal.util.dynamicViews.DynamicView;
 
 import java.util.List;
 import java.util.Objects;
 
-import javax.inject.Inject;
-
 public class HomeFragment extends BaseFragment {
-
-    @Inject
-    ViewModelProviderFactory providerFactory;
 
     protected HomeViewModel viewModel;
     private FragmentHomeBinding homeBinding;
