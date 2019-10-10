@@ -1,5 +1,6 @@
 package com.vavisa.taal.data.network.main;
 
+import com.vavisa.taal.data.model.Case;
 import com.vavisa.taal.data.model.CaseField;
 import com.vavisa.taal.data.model.CaseResponse;
 import com.vavisa.taal.data.model.Category;
@@ -10,6 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import io.reactivex.Observable;
+import retrofit2.http.Body;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
@@ -24,10 +26,8 @@ public interface MainApi {
     @GET("user/getCaseParameters/{category_id}")
     Observable<List<Parameter>> getCategoryParameters(@Path("category_id") Integer categoryId);
 
-    @FormUrlEncoded
     @POST("user/addCase")
-    Observable<CaseResponse> addCase(@Field("fields") List<CaseField> fields,
-                                     @Field("category_id") Integer categoryId);
+    Observable<CaseResponse> addCase(@Body Case requestCase);
 
     @GET("user/getProfile")
     Observable<User> getUserProfile();

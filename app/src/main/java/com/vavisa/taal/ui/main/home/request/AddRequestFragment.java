@@ -19,9 +19,12 @@ import com.vavisa.taal.data.network.main.Resource;
 import com.vavisa.taal.databinding.FragmentAddRequestBinding;
 import com.vavisa.taal.di.util.ViewModelProviderFactory;
 import com.vavisa.taal.ui.main.home.HomeViewModel;
+import com.vavisa.taal.util.dynamicViews.DynamicView;
+import com.vavisa.taal.util.dynamicViews.DynamicViewFactory;
 
 import org.jetbrains.annotations.NotNull;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -69,6 +72,16 @@ public class AddRequestFragment extends BaseFragment {
         }
     }
 
+    private void createRequestView(List<Parameter> parameters, FragmentAddRequestBinding binding) {
+        DynamicViewFactory viewFactory = new DynamicViewFactory(getActivity());
+        ArrayList<DynamicView> viewsList = new ArrayList<>();
+        for (Parameter parameter: parameters){
+            viewsList.add(viewFactory.createView(parameter));
+            viewsList.size();
+        }
+        binding.setViewsList(viewsList);
+    }
+
     private void observeSelectedCategory() {
         ViewModelProviders.of(Objects.requireNonNull(getActivity()), providerFactory)
                 .get(HomeViewModel.class)
@@ -92,7 +105,7 @@ public class AddRequestFragment extends BaseFragment {
             case SUCCESS:
                 hideProgress();
                 if (listResource.data != null)
-                    viewModel.createRequestView(listResource.data, binding);
+                    createRequestView(listResource.data, binding);
                 break;
         }
     }

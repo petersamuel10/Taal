@@ -1,6 +1,7 @@
 package com.vavisa.taal.ui.main.home.request;
 
 import android.content.Context;
+import android.util.Log;
 
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
@@ -11,9 +12,7 @@ import com.vavisa.taal.data.model.CaseResponse;
 import com.vavisa.taal.data.model.Parameter;
 import com.vavisa.taal.data.network.main.Resource;
 import com.vavisa.taal.data.repository.RequestRepository;
-import com.vavisa.taal.databinding.FragmentAddRequestBinding;
 import com.vavisa.taal.util.dynamicViews.DynamicView;
-import com.vavisa.taal.util.dynamicViews.DynamicViewFactory;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -60,19 +59,6 @@ public class AddRequestViewModel extends ViewModel {
                 ));
     }
 
-    void createRequestView(List<Parameter> parameters, FragmentAddRequestBinding binding) {
-        DynamicViewFactory viewFactory = new DynamicViewFactory(context);
-        ArrayList<DynamicView> viewsList = new ArrayList<>();
-        fields = new ArrayList<>();
-        for (Parameter parameter: parameters){
-            viewsList.add(viewFactory.createView(parameter));
-            viewsList.size();
-            CaseField field = new CaseField(parameter.getId());
-            fields.add(field);
-        }
-        binding.setViewsList(viewsList);
-    }
-
     public void submitRequest(ArrayList<DynamicView> viewsList){
         if (getCaseFields(viewsList)) 
             compositeDisposable.add(requestRepository.addCase(fields, categoryId)
@@ -91,12 +77,17 @@ public class AddRequestViewModel extends ViewModel {
     }
 
     private boolean getCaseFields(ArrayList<DynamicView> viewsList){
-        for (int i=0; i<fields.size(); i++){
-            String value = viewsList.get(i).getValue();
-            if (value != null)
-                fields.get(i).setValue(value);
-            else
-                return false;
+        fields = new ArrayList<>();
+        for (int i=0; i<viewsList.size(); i++){
+            if (liveData.getValue() != null && liveData.getValue().data != null){
+                Integer id = liveData.getValue().data.get(i).getId();
+                Boolean required = liveData.getValue().data.get(i).getRequired();
+                String value = viewsList.get(i).getValue();
+                if (value != null)
+                    fields.add(new CaseField(id, value));
+                else if (required)
+                    return false;
+            }
         }
         return true;
     }
