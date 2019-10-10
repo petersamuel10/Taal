@@ -1,5 +1,7 @@
 package com.vavisa.taal.data.repository;
 
+import com.vavisa.taal.data.model.CaseField;
+import com.vavisa.taal.data.model.CaseResponse;
 import com.vavisa.taal.data.model.Parameter;
 import com.vavisa.taal.data.network.main.MainApi;
 
@@ -19,5 +21,9 @@ public class RequestRepository {
 
     public Observable<List<Parameter>> getCategoryParameters(Integer categoryId){
         return mainApi.getCategoryParameters(categoryId);
+    }
+
+    public Observable<CaseResponse> addCase(List<CaseField> fields, Integer categoryId){
+        return mainApi.addCase(fields, categoryId);
     }
 }

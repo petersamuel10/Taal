@@ -29,4 +29,6 @@
     <string name="submit">Submit</string>
     <string name="pending">Pending</string>
     <string name="accepted">Accepted</string>
+    <string name="fields_that_marked_with_are_require_fields">Fields that marked with (*) are required fields</string>
+    <string name="fill_required_fields">Please fill required fields</string>
 </resources>

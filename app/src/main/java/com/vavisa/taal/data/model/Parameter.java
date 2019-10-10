@@ -17,7 +17,7 @@ public class Parameter {
     private List<String> value;
 
     @Expose
-    private Integer required;
+    private Boolean required;
 
     @Expose
     private String label;
@@ -49,16 +49,19 @@ public class Parameter {
         this.value = value;
     }
 
-    public Integer getRequired() {
+    public Boolean getRequired() {
         return required;
     }
 
-    public void setRequired(Integer required) {
+    public void setRequired(Boolean required) {
         this.required = required;
     }
 
     public String getLabel() {
-        return label;
+        if (required)
+            return label.concat("*");
+        else
+            return label;
     }
 
     public void setLabel(String label) {
