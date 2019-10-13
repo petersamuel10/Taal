@@ -9,6 +9,9 @@ public class Case {
     private Category category;
 
     @Expose
+    private String description;
+
+    @Expose
     private Status status;
 
     @SerializedName("case_id")
@@ -23,6 +26,14 @@ public class Case {
 
     public void setCategory(Category category) {
         this.category = category;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public Status getStatus() {

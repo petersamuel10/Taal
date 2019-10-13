@@ -30,15 +30,27 @@
         </com.google.android.material.tabs.TabLayout>
 
         <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/requests_recycler"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:setRequestList="@{requestsList}"
+            android:layout_marginStart="@dimen/_15sdp"
+            android:layout_marginEnd="@dimen/_15sdp"/>
 
     </LinearLayout>
 
     <data>
 
+        <import type="java.util.List"/>
+        <import type="com.vavisa.taal.data.model.Case"/>
+
         <variable
             name="onTabSelectedListener"
             type="com.google.android.material.tabs.TabLayout.OnTabSelectedListener" />
+
+        <variable
+            name="requestsList"
+            type="List&lt;Case>" />
     </data>
 </layout>

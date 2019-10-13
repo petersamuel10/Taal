@@ -68,8 +68,12 @@ public class MyRequestsFragment extends BaseFragment {
                 break;
 
             case SUCCESS:
-                showMessage(String.valueOf(listResource.data.size()));
                 hideProgress();
+                displayRequestsList(listResource.data);
         }
+    }
+
+    private void displayRequestsList(List<Case> data) {
+        requestsBinding.setRequestsList(data);
     }
 }

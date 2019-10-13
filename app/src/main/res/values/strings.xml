@@ -31,4 +31,9 @@
     <string name="accepted">Accepted</string>
     <string name="fields_that_marked_with_are_require_fields">Fields that marked with (*) are required fields</string>
     <string name="fill_required_fields">Please fill required fields</string>
+    <string name="category">Category</string>
+    <string name="description">Description</string>
+    <string name="status">Status</string>
+    <string name="quotations">Quotations</string>
+    <string name="request_id">"Request# : "</string>
 </resources>
