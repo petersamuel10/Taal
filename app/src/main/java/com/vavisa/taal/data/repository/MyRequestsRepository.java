@@ -1,6 +1,6 @@
 package com.vavisa.taal.data.repository;
 
-import com.vavisa.taal.data.model.CaseResponse;
+import com.vavisa.taal.data.model.Case;
 import com.vavisa.taal.data.network.main.MainApi;
 
 import java.util.List;
@@ -18,7 +18,7 @@ public class MyRequestsRepository {
         this.mainApi = mainApi;
     }
 
-    public Observable<List<CaseResponse>> getCases(){
+    public Observable<List<Case>> getCases(){
         return mainApi.getCases();
     }
 }

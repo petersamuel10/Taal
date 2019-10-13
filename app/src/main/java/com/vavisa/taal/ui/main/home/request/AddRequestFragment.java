@@ -13,12 +13,13 @@ import android.view.ViewGroup;
 
 import com.vavisa.taal.R;
 import com.vavisa.taal.base.BaseFragment;
-import com.vavisa.taal.data.model.CaseResponse;
+import com.vavisa.taal.data.model.GeneralResponse;
 import com.vavisa.taal.data.model.Parameter;
 import com.vavisa.taal.data.network.main.Resource;
 import com.vavisa.taal.databinding.FragmentAddRequestBinding;
 import com.vavisa.taal.di.util.ViewModelProviderFactory;
-import com.vavisa.taal.ui.main.home.HomeViewModel;
+import com.vavisa.taal.ui.main.home.categories.HomeViewModel;
+import com.vavisa.taal.ui.main.navigation.NavigationActivity;
 import com.vavisa.taal.util.dynamicViews.DynamicView;
 import com.vavisa.taal.util.dynamicViews.DynamicViewFactory;
 
@@ -55,7 +56,7 @@ public class AddRequestFragment extends BaseFragment {
         observeSelectedCategory();
     }
 
-    private void consumeRequestResponse(Resource<CaseResponse> caseResponseResource) {
+    private void consumeRequestResponse(Resource<GeneralResponse> caseResponseResource) {
         switch (caseResponseResource.status){
             case LOADING:
                 showProgress();
@@ -68,7 +69,16 @@ public class AddRequestFragment extends BaseFragment {
 
             case SUCCESS:
                 hideProgress();
+                showMessage(caseResponseResource.data.getMessage());
+                openMyRequests();
                 break;
+        }
+    }
+
+    private void openMyRequests() {
+        NavigationActivity navigationActivity = (NavigationActivity) getActivity();
+        if (navigationActivity != null) {
+            navigationActivity.mainBinding.setSelectedItemId(R.id.requests);
         }
     }
 

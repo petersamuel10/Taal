@@ -8,7 +8,7 @@ public class NavigationBindingAdapter {
 
     @BindingAdapter("selectedItem")
     public static void setSelectedItem(
-            BottomNavigationView view, int itemId) {
+            BottomNavigationView view, Integer itemId) {
         view.setSelectedItemId(itemId);
     }
 

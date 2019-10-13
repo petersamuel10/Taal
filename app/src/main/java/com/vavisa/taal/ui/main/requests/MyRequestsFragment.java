@@ -5,19 +5,25 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.databinding.DataBindingUtil;
+import androidx.lifecycle.ViewModelProviders;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import com.google.android.material.tabs.TabLayout;
 import com.vavisa.taal.R;
 import com.vavisa.taal.base.BaseFragment;
+import com.vavisa.taal.data.model.Case;
+import com.vavisa.taal.data.model.Status;
+import com.vavisa.taal.data.network.main.Resource;
 import com.vavisa.taal.databinding.FragmentMyRequestsBinding;
+
+import java.util.List;
 
 public class MyRequestsFragment extends BaseFragment {
 
+    private MyRequestsViewModel myRequestsViewModel;
     private FragmentMyRequestsBinding requestsBinding;
 
     public MyRequestsFragment() {}
@@ -30,13 +36,40 @@ public class MyRequestsFragment extends BaseFragment {
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        myRequestsViewModel = ViewModelProviders.of(this, providerFactory).get(MyRequestsViewModel.class);
+        myRequestsViewModel.getLiveData().observe(this, this::ConsumeResponse);
+        myRequestsViewModel.getPendingCases();
+        handleTabSelection();
+    }
+
+    private void handleTabSelection() {
         requestsBinding.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
-                Toast.makeText(getActivity(), ""+tab.getPosition(), Toast.LENGTH_SHORT).show();
+                if (tab.getPosition() == 0)
+                    myRequestsViewModel.filterCaseStatus(Status.PENDING);
+                else
+                    myRequestsViewModel.filterCaseStatus(Status.ACCEPTED);
             }
             @Override public void onTabUnselected(TabLayout.Tab tab) {}
             @Override public void onTabReselected(TabLayout.Tab tab) {}
         });
+    }
+
+    private void ConsumeResponse(Resource<List<Case>> listResource) {
+        switch (listResource.status){
+            case LOADING:
+                showProgress();
+                break;
+
+            case ERROR:
+                hideProgress();
+                showErrorMessage(listResource.error);
+                break;
+
+            case SUCCESS:
+                showMessage(String.valueOf(listResource.data.size()));
+                hideProgress();
+        }
     }
 }

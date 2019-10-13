@@ -16,16 +16,22 @@
             android:layout_weight="1"/>
 
         <com.google.android.material.bottomnavigation.BottomNavigationView
+            android:id="@+id/bottom_navigation"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:menu="@menu/navigation_menu"
             app:onNavigationItemSelected="@{handler::onNavigationClick}"
-            app:selectedItem="@{R.id.home}" />
+            app:selectedItem="@{selectedItemId}" />
 
     </LinearLayout>
 
     <data>
         <import type="com.vavisa.taal.R"/>
+
+        <variable
+            name="selectedItemId"
+            type="Integer" />
+
         <variable
             name="handler"
             type="com.vavisa.taal.ui.main.navigation.NavigationEventHandler" />

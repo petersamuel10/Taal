@@ -1,14 +1,13 @@
 package com.vavisa.taal.ui.main.home.request;
 
 import android.content.Context;
-import android.util.Log;
 
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 import com.vavisa.taal.R;
 import com.vavisa.taal.data.model.CaseField;
-import com.vavisa.taal.data.model.CaseResponse;
+import com.vavisa.taal.data.model.GeneralResponse;
 import com.vavisa.taal.data.model.Parameter;
 import com.vavisa.taal.data.network.main.Resource;
 import com.vavisa.taal.data.repository.RequestRepository;
@@ -31,7 +30,7 @@ public class AddRequestViewModel extends ViewModel {
     private RequestRepository requestRepository;
     private CompositeDisposable compositeDisposable = new CompositeDisposable();
     private MutableLiveData<Resource<List<Parameter>>> liveData = new MutableLiveData<>();
-    private MutableLiveData<Resource<CaseResponse>> caseLiveData = new MutableLiveData<>();
+    private MutableLiveData<Resource<GeneralResponse>> caseLiveData = new MutableLiveData<>();
 
     @Inject
     AddRequestViewModel(RequestRepository requestRepository, Context context) {
@@ -43,7 +42,7 @@ public class AddRequestViewModel extends ViewModel {
         return liveData;
     }
 
-    MutableLiveData<Resource<CaseResponse>> getCaseLiveData() {
+    MutableLiveData<Resource<GeneralResponse>> getCaseLiveData() {
         return caseLiveData;
     }
 
@@ -59,8 +58,8 @@ public class AddRequestViewModel extends ViewModel {
                 ));
     }
 
-    public void submitRequest(ArrayList<DynamicView> viewsList){
-        if (getCaseFields(viewsList)) 
+    public void submitRequest(ArrayList<DynamicView> viewsList) {
+        if (getCaseFields(viewsList))
             compositeDisposable.add(requestRepository.addCase(fields, categoryId)
                     .subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
@@ -69,17 +68,17 @@ public class AddRequestViewModel extends ViewModel {
                             caseResponse -> caseLiveData.setValue(Resource.success(caseResponse)),
                             throwable -> caseLiveData.setValue(Resource.error(throwable))
                     ));
-        else 
+        else
             caseLiveData.setValue(
                     Resource.error(new Throwable(
                             context.getString(
                                     R.string.fill_required_fields))));
     }
 
-    private boolean getCaseFields(ArrayList<DynamicView> viewsList){
+    private boolean getCaseFields(ArrayList<DynamicView> viewsList) {
         fields = new ArrayList<>();
-        for (int i=0; i<viewsList.size(); i++){
-            if (liveData.getValue() != null && liveData.getValue().data != null){
+        for (int i = 0; i < viewsList.size(); i++) {
+            if (liveData.getValue() != null && liveData.getValue().data != null) {
                 Integer id = liveData.getValue().data.get(i).getId();
                 Boolean required = liveData.getValue().data.get(i).getRequired();
                 String value = viewsList.get(i).getValue();

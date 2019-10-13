@@ -4,9 +4,10 @@ package com.vavisa.taal.di.module;
 import androidx.lifecycle.ViewModel;
 
 import com.vavisa.taal.di.util.ViewModelKey;
-import com.vavisa.taal.ui.main.home.HomeViewModel;
+import com.vavisa.taal.ui.main.home.categories.HomeViewModel;
 import com.vavisa.taal.ui.main.home.request.AddRequestViewModel;
 import com.vavisa.taal.ui.main.profile.ProfileViewModel;
+import com.vavisa.taal.ui.main.requests.MyRequestsViewModel;
 
 import dagger.Binds;
 import dagger.Module;
@@ -24,6 +25,11 @@ public abstract class MainViewModelModule {
     @IntoMap
     @ViewModelKey(AddRequestViewModel.class)
     public abstract ViewModel bindAddRequestViewModel(AddRequestViewModel viewModel);
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(MyRequestsViewModel.class)
+    public abstract ViewModel bindMyRequestViewModel(MyRequestsViewModel viewModel);
 
     @Binds
     @IntoMap

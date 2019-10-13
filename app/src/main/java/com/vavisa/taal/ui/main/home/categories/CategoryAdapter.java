@@ -1,4 +1,4 @@
-package com.vavisa.taal.ui.main.home;
+package com.vavisa.taal.ui.main.home.categories;
 
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
@@ -12,7 +12,6 @@ import com.vavisa.taal.R;
 import com.vavisa.taal.data.model.Category;
 import com.vavisa.taal.databinding.CategoryItemBinding;
 import com.vavisa.taal.ui.main.home.request.AddRequestFragment;
-import com.vavisa.taal.ui.main.home.request.AddRequestViewModel;
 import com.vavisa.taal.ui.main.navigation.NavigationActivity;
 
 import java.util.List;

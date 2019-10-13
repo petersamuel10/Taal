@@ -11,12 +11,15 @@ import com.vavisa.taal.databinding.ActivityNavigationBinding;
 
 public class NavigationActivity extends BaseActivity {
 
+    public ActivityNavigationBinding mainBinding;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_navigation);
-        ActivityNavigationBinding mainBinding = DataBindingUtil.setContentView(this, R.layout.activity_navigation);
-        mainBinding.setHandler(new NavigationEventHandler(this));
+        mainBinding = DataBindingUtil.setContentView(this, R.layout.activity_navigation);
+        NavigationEventHandler navigationHandler = new NavigationEventHandler(this);
+        mainBinding.setSelectedItemId(R.id.home);
+        mainBinding.setHandler(navigationHandler);
     }
 
 }

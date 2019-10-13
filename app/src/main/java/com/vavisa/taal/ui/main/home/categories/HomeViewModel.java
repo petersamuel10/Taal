@@ -1,4 +1,4 @@
-package com.vavisa.taal.ui.main.home;
+package com.vavisa.taal.ui.main.home.categories;
 
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;

@@ -6,6 +6,7 @@ import com.vavisa.taal.InstantExecutorExtension;
 import com.vavisa.taal.data.model.Category;
 import com.vavisa.taal.data.network.main.Resource;
 import com.vavisa.taal.data.repository.HomeRepository;
+import com.vavisa.taal.ui.main.home.categories.HomeViewModel;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;

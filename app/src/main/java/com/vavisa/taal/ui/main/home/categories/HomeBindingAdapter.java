@@ -1,4 +1,4 @@
-package com.vavisa.taal.ui.main.home;
+package com.vavisa.taal.ui.main.home.categories;
 
 import androidx.databinding.BindingAdapter;
 import androidx.recyclerview.widget.RecyclerView;
