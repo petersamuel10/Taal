@@ -4,14 +4,14 @@ import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
-public class Case {
+public class CaseRequest {
 
     @SerializedName("category_id")
     private Integer categoryId;
 
     private List<CaseField> fields;
 
-    public Case(Integer categoryId, List<CaseField> fields) {
+    public CaseRequest(Integer categoryId, List<CaseField> fields) {
         this.categoryId = categoryId;
         this.fields = fields;
     }

@@ -35,7 +35,7 @@ public class MyRequestsFragment extends BaseFragment {
             public void onTabSelected(TabLayout.Tab tab) {
                 Toast.makeText(getActivity(), ""+tab.getPosition(), Toast.LENGTH_SHORT).show();
             }
-            @Override public void onTabUnselected(TabLayout.Tab tab) { }
+            @Override public void onTabUnselected(TabLayout.Tab tab) {}
             @Override public void onTabReselected(TabLayout.Tab tab) {}
         });
     }
