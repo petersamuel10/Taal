@@ -93,7 +93,8 @@
             android:layout_marginStart="@dimen/_5sdp"
             android:fontFamily="sans-serif-light"
             android:textColor="@color/twilight_blue"
-            android:textSize="@dimen/_10ssp" />
+            android:textSize="@dimen/_10ssp"
+            app:descriptionFields="@{request.description}"/>
 
         <View
             android:layout_marginTop="@dimen/_5sdp"
