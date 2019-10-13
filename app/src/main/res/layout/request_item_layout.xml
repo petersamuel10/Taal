@@ -11,6 +11,7 @@
         android:layout_marginTop="@dimen/_15sdp"
         android:paddingEnd="@dimen/_30sdp"
         android:paddingBottom="@dimen/_13sdp"
+        android:onClick="@{clickListener}"
         android:layerType="software">
 
         <View
@@ -91,7 +92,6 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/_5sdp"
             android:fontFamily="sans-serif-light"
-            android:text="@{request.description}"
             android:textColor="@color/twilight_blue"
             android:textSize="@dimen/_10ssp" />
 
@@ -165,6 +165,10 @@
         <variable
             name="request"
             type="com.vavisa.taal.data.model.Case" />
+
+        <variable
+            name="clickListener"
+            type="android.view.View.OnClickListener" />
     </data>
 
 </layout>
