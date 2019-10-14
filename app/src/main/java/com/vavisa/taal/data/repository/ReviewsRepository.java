@@ -5,13 +5,16 @@ import com.vavisa.taal.data.network.main.MainApi;
 
 import java.util.List;
 
+import javax.inject.Inject;
+
 import io.reactivex.Observable;
 
 public class ReviewsRepository {
 
     private MainApi mainApi;
 
-    public ReviewsRepository(MainApi mainApi) {
+    @Inject
+    ReviewsRepository(MainApi mainApi) {
         this.mainApi = mainApi;
     }
 

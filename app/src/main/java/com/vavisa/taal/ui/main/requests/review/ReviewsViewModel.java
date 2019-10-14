@@ -9,6 +9,8 @@ import com.vavisa.taal.data.repository.ReviewsRepository;
 
 import java.util.List;
 
+import javax.inject.Inject;
+
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.schedulers.Schedulers;
@@ -19,8 +21,13 @@ public class ReviewsViewModel extends ViewModel {
     private CompositeDisposable compositeDisposable = new CompositeDisposable();
     private MutableLiveData<Resource<List<Review>>> liveData = new MutableLiveData<>();
 
-    public ReviewsViewModel(ReviewsRepository reviewsRepository) {
+    @Inject
+    ReviewsViewModel(ReviewsRepository reviewsRepository) {
         this.reviewsRepository = reviewsRepository;
+    }
+
+    public MutableLiveData<Resource<List<Review>>> getLiveData() {
+        return liveData;
     }
 
     void getProviderReviews(Integer providerId) {

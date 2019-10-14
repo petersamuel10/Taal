@@ -6,6 +6,7 @@ import com.vavisa.taal.ui.main.home.request.AddRequestFragment;
 import com.vavisa.taal.ui.main.profile.ProfileFragment;
 import com.vavisa.taal.ui.main.requests.MyRequestsFragment;
 import com.vavisa.taal.ui.main.requests.details.RequestDetailsFragment;
+import com.vavisa.taal.ui.main.requests.review.ReviewsBottomFragment;
 
 import dagger.Module;
 import dagger.android.ContributesAndroidInjector;
@@ -24,6 +25,9 @@ abstract class MainFragmentBuildersModule {
 
     @ContributesAndroidInjector
     abstract RequestDetailsFragment contributeRequestDetailsFragment();
+
+    @ContributesAndroidInjector
+    abstract ReviewsBottomFragment contributeReviewBottomFragment();
 
     @ContributesAndroidInjector
     abstract ProfileFragment contributeProfileFragment();

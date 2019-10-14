@@ -35,7 +35,7 @@ public interface MainApi {
     Observable<RequestDetails> getCaseDetails(@Path("case_id") Integer caseId);
 
     @GET("provider/getReviews/{provider_id}")
-    Observable<List<Review>> getProviderReviews(@Path("provide_id") Integer providerId);
+    Observable<List<Review>> getProviderReviews(@Path("provider_id") Integer providerId);
 
     @GET("user/getProfile")
     Observable<User> getUserProfile();

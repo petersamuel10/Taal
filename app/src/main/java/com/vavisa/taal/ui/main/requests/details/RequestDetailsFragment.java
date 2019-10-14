@@ -30,7 +30,7 @@ public class RequestDetailsFragment extends BaseFragment {
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        RequestDetailsViewModel viewModel = ViewModelProviders.of(this, providerFactory).get(RequestDetailsViewModel.class);
+        RequestDetailsViewModel viewModel = ViewModelProviders.of(getActivity(), providerFactory).get(RequestDetailsViewModel.class);
         viewModel.getLiveData().observe(this, this::consumeResponse);
         viewModel.getRequestDetails(1);
     }

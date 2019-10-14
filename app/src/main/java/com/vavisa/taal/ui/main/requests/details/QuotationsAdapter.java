@@ -5,6 +5,7 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.databinding.DataBindingUtil;
+import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.vavisa.taal.R;
@@ -12,6 +13,7 @@ import com.vavisa.taal.data.model.Quotation;
 import com.vavisa.taal.databinding.QuotationItemBinding;
 import com.vavisa.taal.ui.main.navigation.NavigationActivity;
 import com.vavisa.taal.ui.main.requests.review.ReviewsBottomFragment;
+import com.vavisa.taal.ui.main.requests.review.ReviewsViewModel;
 
 import java.util.List;
 
@@ -36,6 +38,10 @@ public class QuotationsAdapter extends RecyclerView.Adapter<QuotationsAdapter.Vi
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         holder.quotationItemBinding.setQuotation(quotations.get(position));
         holder.quotationItemBinding.setClickListener(view -> {
+            ViewModelProviders.of(activity)
+                    .get(RequestDetailsViewModel.class)
+                    .setProviderIdLiveData(quotations.get(position)
+                            .getProvider().getProviderId());
             ReviewsBottomFragment reviewsBottomFragment = new ReviewsBottomFragment();
             reviewsBottomFragment.show(activity.getSupportFragmentManager(), "modalSheetDialog");
         });

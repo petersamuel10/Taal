@@ -18,6 +18,7 @@ public class RequestDetailsViewModel extends ViewModel {
     private RequestDetailsRepository requestDetailsRepository;
     private CompositeDisposable compositeDisposable = new CompositeDisposable();
     private MutableLiveData<Resource<RequestDetails>> liveData = new MutableLiveData<>();
+    private MutableLiveData<Integer> providerIdLiveData = new MutableLiveData<>();
 
     @Inject
     RequestDetailsViewModel(RequestDetailsRepository requestDetailsRepository) {
@@ -26,6 +27,14 @@ public class RequestDetailsViewModel extends ViewModel {
 
     public MutableLiveData<Resource<RequestDetails>> getLiveData() {
         return liveData;
+    }
+
+    public MutableLiveData<Integer> getProviderIdLiveData() {
+        return providerIdLiveData;
+    }
+
+    void setProviderIdLiveData(Integer providerId) {
+        providerIdLiveData.setValue(providerId);
     }
 
     void getRequestDetails(Integer caseId){

@@ -9,6 +9,7 @@ import com.vavisa.taal.ui.main.home.request.AddRequestViewModel;
 import com.vavisa.taal.ui.main.profile.ProfileViewModel;
 import com.vavisa.taal.ui.main.requests.MyRequestsViewModel;
 import com.vavisa.taal.ui.main.requests.details.RequestDetailsViewModel;
+import com.vavisa.taal.ui.main.requests.review.ReviewsViewModel;
 
 import dagger.Binds;
 import dagger.Module;
@@ -36,6 +37,12 @@ public abstract class MainViewModelModule {
     @IntoMap
     @ViewModelKey(RequestDetailsViewModel.class)
     public abstract ViewModel bindRequestDetailsViewModel(RequestDetailsViewModel viewModel);
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(ReviewsViewModel.class)
+    public abstract ViewModel bindReviewsViewModel(ReviewsViewModel viewModel);
+
 
     @Binds
     @IntoMap
