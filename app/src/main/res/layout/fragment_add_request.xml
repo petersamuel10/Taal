@@ -95,7 +95,7 @@
 
     <data>
 
-        <import type="com.vavisa.taal.util.dynamicViews.DynamicView" />
+        <import type="com.vavisa.taal.helper.dynamicViews.DynamicView" />
 
         <import type="java.util.ArrayList" />
 

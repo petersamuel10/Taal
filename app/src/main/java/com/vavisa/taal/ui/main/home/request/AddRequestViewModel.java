@@ -11,7 +11,7 @@ import com.vavisa.taal.data.model.GeneralResponse;
 import com.vavisa.taal.data.model.Parameter;
 import com.vavisa.taal.data.network.main.Resource;
 import com.vavisa.taal.data.repository.RequestRepository;
-import com.vavisa.taal.util.dynamicViews.DynamicView;
+import com.vavisa.taal.helper.dynamicViews.DynamicView;
 
 import java.util.ArrayList;
 import java.util.List;

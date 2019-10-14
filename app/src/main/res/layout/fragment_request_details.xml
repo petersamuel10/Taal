@@ -53,6 +53,16 @@
                     android:layout_margin="@dimen/_15sdp"
                     app:request="@{request}" />
 
+                <TextView
+                    android:fontFamily="sans-serif-medium"
+                    android:textColor="@color/twilight_blue"
+                    android:layout_marginStart="@dimen/_15sdp"
+                    android:textSize="@dimen/_17ssp"
+                    android:text="@string/quotations"
+                    android:layout_marginBottom="@dimen/_15sdp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/quotations_recycler"
                     android:layout_width="match_parent"

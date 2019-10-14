@@ -4,7 +4,7 @@ import android.widget.LinearLayout;
 
 import androidx.databinding.BindingAdapter;
 
-import com.vavisa.taal.util.dynamicViews.DynamicView;
+import com.vavisa.taal.helper.dynamicViews.DynamicView;
 
 import java.util.ArrayList;
 

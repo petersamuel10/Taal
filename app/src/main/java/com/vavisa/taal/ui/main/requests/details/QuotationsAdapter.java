@@ -1,7 +1,6 @@
 package com.vavisa.taal.ui.main.requests.details;
 
 import android.view.LayoutInflater;
-import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
@@ -11,12 +10,15 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.vavisa.taal.R;
 import com.vavisa.taal.data.model.Quotation;
 import com.vavisa.taal.databinding.QuotationItemBinding;
+import com.vavisa.taal.ui.main.navigation.NavigationActivity;
+import com.vavisa.taal.ui.main.requests.review.ReviewsBottomFragment;
 
 import java.util.List;
 
-public class QuotationsAdapter extends RecyclerView.Adapter<QuotationsAdapter.ViewHolder>{
+public class QuotationsAdapter extends RecyclerView.Adapter<QuotationsAdapter.ViewHolder> {
 
     private List<Quotation> quotations;
+    private NavigationActivity activity;
 
     public QuotationsAdapter(List<Quotation> quotations) {
         this.quotations = quotations;
@@ -33,11 +35,21 @@ public class QuotationsAdapter extends RecyclerView.Adapter<QuotationsAdapter.Vi
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         holder.quotationItemBinding.setQuotation(quotations.get(position));
+        holder.quotationItemBinding.setClickListener(view -> {
+            ReviewsBottomFragment reviewsBottomFragment = new ReviewsBottomFragment();
+            reviewsBottomFragment.show(activity.getSupportFragmentManager(), "modalSheetDialog");
+        });
     }
 
     @Override
     public int getItemCount() {
         return quotations.size();
+    }
+
+    @Override
+    public void onAttachedToRecyclerView(@NonNull RecyclerView recyclerView) {
+        super.onAttachedToRecyclerView(recyclerView);
+        activity = (NavigationActivity) recyclerView.getContext();
     }
 
     class ViewHolder extends RecyclerView.ViewHolder {

@@ -1,4 +1,4 @@
-package com.vavisa.taal.util.dynamicViews;
+package com.vavisa.taal.helper.dynamicViews;
 
 import android.content.Context;
 

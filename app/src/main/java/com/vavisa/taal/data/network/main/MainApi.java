@@ -6,6 +6,7 @@ import com.vavisa.taal.data.model.Category;
 import com.vavisa.taal.data.model.GeneralResponse;
 import com.vavisa.taal.data.model.Parameter;
 import com.vavisa.taal.data.model.RequestDetails;
+import com.vavisa.taal.data.model.Review;
 import com.vavisa.taal.data.model.User;
 
 import java.util.List;
@@ -32,6 +33,9 @@ public interface MainApi {
 
     @GET("user/getCaseDetails/{case_id}")
     Observable<RequestDetails> getCaseDetails(@Path("case_id") Integer caseId);
+
+    @GET("provider/getReviews/{provider_id}")
+    Observable<List<Review>> getProviderReviews(@Path("provide_id") Integer providerId);
 
     @GET("user/getProfile")
     Observable<User> getUserProfile();

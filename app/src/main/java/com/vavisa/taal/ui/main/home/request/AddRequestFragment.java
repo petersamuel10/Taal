@@ -10,6 +10,7 @@ import androidx.lifecycle.ViewModelProviders;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.vavisa.taal.R;
 import com.vavisa.taal.base.BaseFragment;
@@ -18,10 +19,11 @@ import com.vavisa.taal.data.model.Parameter;
 import com.vavisa.taal.data.network.main.Resource;
 import com.vavisa.taal.databinding.FragmentAddRequestBinding;
 import com.vavisa.taal.di.util.ViewModelProviderFactory;
+import com.vavisa.taal.helper.dialogs.SuccessDialog;
 import com.vavisa.taal.ui.main.home.categories.HomeViewModel;
 import com.vavisa.taal.ui.main.navigation.NavigationActivity;
-import com.vavisa.taal.util.dynamicViews.DynamicView;
-import com.vavisa.taal.util.dynamicViews.DynamicViewFactory;
+import com.vavisa.taal.helper.dynamicViews.DynamicView;
+import com.vavisa.taal.helper.dynamicViews.DynamicViewFactory;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -69,13 +71,22 @@ public class AddRequestFragment extends BaseFragment {
 
             case SUCCESS:
                 hideProgress();
-                showMessage(caseResponseResource.data.getMessage());
-                openMyRequests();
+                if (caseResponseResource.data != null) {
+                    showSuccessDialog(caseResponseResource.data.getMessage());
+                }
                 break;
         }
     }
 
-    private void openMyRequests() {
+    private void showSuccessDialog(String message) {
+        SuccessDialog dialog = new SuccessDialog(Objects.requireNonNull(getActivity()),
+                android.R.style.Theme_Black_NoTitleBar_Fullscreen,
+                this::openMyRequests);
+        dialog.setMessage(message);
+        dialog.show();
+    }
+
+    private void openMyRequests(){
         NavigationActivity navigationActivity = (NavigationActivity) getActivity();
         if (navigationActivity != null) {
             navigationActivity.mainBinding.setSelectedItemId(R.id.requests);

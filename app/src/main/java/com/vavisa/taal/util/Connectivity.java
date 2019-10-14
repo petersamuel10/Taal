@@ -13,11 +13,9 @@ public class Connectivity {
             return false;
         } else {
             NetworkInfo[] info = connectivity.getAllNetworkInfo();
-            if (info != null) {
-                for (NetworkInfo anInfo : info) {
-                    if (anInfo.getState() == NetworkInfo.State.CONNECTED) {
-                        return true;
-                    }
+            for (NetworkInfo anInfo : info) {
+                if (anInfo.getState() == NetworkInfo.State.CONNECTED) {
+                    return true;
                 }
             }
         }
