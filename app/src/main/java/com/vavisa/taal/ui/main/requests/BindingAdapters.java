@@ -11,6 +11,8 @@ import com.squareup.picasso.Picasso;
 import com.vavisa.taal.R;
 import com.vavisa.taal.data.model.Case;
 import com.vavisa.taal.data.model.DescriptionField;
+import com.vavisa.taal.data.model.Quotation;
+import com.vavisa.taal.ui.main.requests.details.QuotationsAdapter;
 
 import java.util.List;
 
@@ -32,6 +34,15 @@ public class BindingAdapters {
         recyclerView.setAdapter(requestsAdapter);
     }
 
+    @BindingAdapter("setQuotationList")
+    public static void setQuotationList(RecyclerView recyclerView, List<Quotation> quotations) {
+        if (quotations == null)
+            return;
+
+        QuotationsAdapter requestsAdapter = new QuotationsAdapter(quotations);
+        recyclerView.setAdapter(requestsAdapter);
+    }
+
     @BindingAdapter("imageUrl")
     public static void setImageUrl(CircleImageView imageView, String imageUrl) {
         Picasso.get().load(imageUrl).placeholder(R.drawable.image_placholder).into(imageView);
@@ -48,6 +59,8 @@ public class BindingAdapters {
         for (DescriptionField field : fields) {
             description.append(field.getLabel().concat(" : ").concat(field.getValue()).concat("\n"));
         }
-        return description.toString();
+        return description.toString().length() != 0 ?
+                description.toString().substring(0, description.length() - 1) :
+                description.toString();
     }
 }

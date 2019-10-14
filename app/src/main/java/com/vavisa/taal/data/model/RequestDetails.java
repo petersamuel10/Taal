@@ -1,6 +1,5 @@
 package com.vavisa.taal.data.model;
 
-import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
@@ -8,16 +7,16 @@ import java.util.List;
 public class RequestDetails {
 
     @SerializedName("CaseDetails")
-    private CaseDetails caseDetails;
+    private Case caseDetails;
 
     @SerializedName("quotationDetails")
     private List<Quotation> quotations;
 
-    public CaseDetails getCaseDetails() {
+    public Case getCaseDetails() {
         return caseDetails;
     }
 
-    public void setCaseDetails(CaseDetails caseDetails) {
+    public void setCaseDetails(Case caseDetails) {
         this.caseDetails = caseDetails;
     }
 

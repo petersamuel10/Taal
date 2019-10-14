@@ -11,7 +11,7 @@ public class Provider {
     private Object providerImage;
 
     @SerializedName("provider_rating")
-    private Integer providerRating;
+    private Float providerRating;
 
     public String getProviderName() {
         return providerName;
@@ -29,11 +29,11 @@ public class Provider {
         this.providerImage = providerImage;
     }
 
-    public Integer getProviderRating() {
+    public Float getProviderRating() {
         return providerRating;
     }
 
-    public void setProviderRating(Integer providerRating) {
+    public void setProviderRating(Float providerRating) {
         this.providerRating = providerRating;
     }
 }

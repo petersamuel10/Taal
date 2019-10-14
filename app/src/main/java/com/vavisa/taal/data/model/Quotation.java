@@ -1,6 +1,7 @@
 package com.vavisa.taal.data.model;
 
 import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
 
 public class Quotation {
 
@@ -9,6 +10,9 @@ public class Quotation {
 
     @Expose
     private Provider provider;
+
+    @SerializedName("extra_notes")
+    private String extraNotes;
 
     public String getPrice() {
         return price;
@@ -24,5 +28,13 @@ public class Quotation {
 
     public void setProvider(Provider provider) {
         this.provider = provider;
+    }
+
+    public String getExtraNotes() {
+        return extraNotes;
+    }
+
+    public void setExtraNotes(String extraNotes) {
+        this.extraNotes = extraNotes;
     }
 }

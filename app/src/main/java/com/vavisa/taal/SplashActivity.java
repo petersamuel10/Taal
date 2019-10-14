@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 
+import com.vavisa.taal.ui.auth.login.LoginActivity;
 import com.vavisa.taal.ui.main.navigation.NavigationActivity;
 
 import java.util.Timer;
@@ -19,7 +20,7 @@ public class SplashActivity extends AppCompatActivity {
         new Timer().schedule(new TimerTask() {
             @Override
             public void run() {
-                startActivity(new Intent(SplashActivity.this, NavigationActivity.class));
+                startActivity(new Intent(SplashActivity.this, LoginActivity.class));
                 finish();
             }
         }, 1000);

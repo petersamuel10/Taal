@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <com.google.android.material.card.MaterialCardView
+        android:orientation="vertical"
+        android:layout_width="@dimen/_250sdp"
+        android:layout_height="wrap_content"
+        app:cardBackgroundColor="@color/white"
+        android:layout_marginStart="@dimen/_10sdp"
+        android:layout_marginEnd="@dimen/_10ssp"
+        android:layerType="software"
+        android:layout_marginBottom="@dimen/_5sdp">
+
+        <LinearLayout
+            android:padding="@dimen/_10sdp"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:layout_width="@dimen/_50sdp"
+                    android:layout_height="@dimen/_50sdp"
+                    app:imageUrl="@{quotation.provider.providerImage}"/>
+
+                <TextView
+                    android:textAlignment="textStart"
+                    android:layout_marginStart="@dimen/_10sdp"
+                    android:textColor="@color/twilight_blue"
+                    android:textSize="@dimen/_13sdp"
+                    android:fontFamily="sans-serif-medium"
+                    android:text="@{quotation.provider.providerName}"
+                    android:layout_gravity="center"
+                    android:gravity="start"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"/>
+
+                <LinearLayout
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <RatingBar
+                        style="?android:attr/ratingBarStyleSmall"
+                        android:isIndicator="false"
+                        android:clickable="false"
+                        android:rating="@{quotation.provider.providerRating}"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+
+                    <TextView
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:textSize="@dimen/_10sdp"
+                        android:textColor="@color/purpleish_blue"
+                        android:text="@string/view_reviews"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+                </LinearLayout>
+            </LinearLayout>
+
+            <View
+                android:layout_marginTop="@dimen/_10sdp"
+                android:layout_marginBottom="@dimen/_10sdp"
+                android:layout_width="match_parent"
+                android:layout_height="5dp"
+                android:background="@drawable/dotted" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="sans-serif-light"
+                android:textColor="@color/twilight_blue"
+                android:textSize="@dimen/_10ssp"
+                android:layout_marginBottom="@dimen/_5sdp"
+                android:text="@{quotation.extraNotes}"/>
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:text="Offered price:"
+                    android:textColor="@color/twilight_blue"
+                    android:fontFamily="sans-serif-medium"
+                    android:textSize="@dimen/_13ssp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+                <TextView
+                    android:textAlignment="textEnd"
+                    android:gravity="end"
+                    android:text="@{quotation.price.concat(@string/kd)}"
+                    android:textColor="@color/twilight_blue"
+                    android:fontFamily="sans-serif-medium"
+                    android:textSize="@dimen/_13ssp"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"/>
+
+            </LinearLayout>
+
+            <com.google.android.material.button.MaterialButton
+                android:layout_width="match_parent"
+                android:textAllCaps="false"
+                android:fontFamily="sans-serif-medium"
+                android:textSize="@dimen/_12sdp"
+                android:text="@string/accept"
+                android:backgroundTint="@color/pinkish_orange"
+                android:layout_height="wrap_content"
+                tools:targetApi="lollipop" />
+
+        </LinearLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+
+    <data>
+
+        <variable
+            name="quotation"
+            type="com.vavisa.taal.data.model.Quotation" />
+
+    </data>
+
+</layout>

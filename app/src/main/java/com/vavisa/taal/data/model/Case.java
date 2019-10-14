@@ -8,10 +8,10 @@ import java.util.List;
 public class Case {
 
     @Expose
-    private Category category;
+    private List<DescriptionField> fields;
 
     @Expose
-    private List<DescriptionField> description;
+    private Category category;
 
     @Expose
     private Status status;
@@ -22,20 +22,26 @@ public class Case {
     @SerializedName("num_quotations")
     private Integer numQuotations;
 
+    @SerializedName("is_edit")
+    private Boolean isEdit;
+
+    @SerializedName("is_delete")
+    private Boolean isDelete;
+
+    public List<DescriptionField> getFields() {
+        return fields;
+    }
+
+    public void setFields(List<DescriptionField> fields) {
+        this.fields = fields;
+    }
+
     public Category getCategory() {
         return category;
     }
 
     public void setCategory(Category category) {
         this.category = category;
-    }
-
-    public List<DescriptionField> getDescription() {
-        return description;
-    }
-
-    public void setDescription(List<DescriptionField> description) {
-        this.description = description;
     }
 
     public Status getStatus() {
@@ -60,5 +66,21 @@ public class Case {
 
     public void setNumQuotations(Integer numQuotations) {
         this.numQuotations = numQuotations;
+    }
+
+    public Boolean getEdit() {
+        return isEdit;
+    }
+
+    public void setEdit(Boolean edit) {
+        isEdit = edit;
+    }
+
+    public Boolean getDelete() {
+        return isDelete;
+    }
+
+    public void setDelete(Boolean delete) {
+        isDelete = delete;
     }
 }

@@ -7,20 +7,25 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.databinding.DataBindingUtil;
 import androidx.lifecycle.ViewModelProviders;
 
 import com.vavisa.taal.R;
 import com.vavisa.taal.base.BaseFragment;
 import com.vavisa.taal.data.model.RequestDetails;
 import com.vavisa.taal.data.network.main.Resource;
+import com.vavisa.taal.databinding.FragmentRequestDetailsBinding;
 
 public class RequestDetailsFragment extends BaseFragment {
+
+    private FragmentRequestDetailsBinding requestDetailsBinding;
 
     public RequestDetailsFragment() {}
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_request_details, container, false);
+        requestDetailsBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_request_details, container, false);
+        return requestDetailsBinding.getRoot();
     }
 
     @Override
@@ -50,6 +55,7 @@ public class RequestDetailsFragment extends BaseFragment {
     }
 
     private void displayRequestDetails(RequestDetails data) {
-        showMessage(data.getCaseDetails().getStatus().toString());
+        requestDetailsBinding.setRequest(data.getCaseDetails());
+        requestDetailsBinding.setQuotationList(data.getQuotations());
     }
 }

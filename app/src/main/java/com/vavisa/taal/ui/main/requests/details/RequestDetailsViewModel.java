@@ -20,7 +20,7 @@ public class RequestDetailsViewModel extends ViewModel {
     private MutableLiveData<Resource<RequestDetails>> liveData = new MutableLiveData<>();
 
     @Inject
-    public RequestDetailsViewModel(RequestDetailsRepository requestDetailsRepository) {
+    RequestDetailsViewModel(RequestDetailsRepository requestDetailsRepository) {
         this.requestDetailsRepository = requestDetailsRepository;
     }
 

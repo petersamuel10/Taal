@@ -36,4 +36,8 @@
     <string name="status">Status</string>
     <string name="quotations">Quotations</string>
     <string name="request_id">"Request# : "</string>
+    <string name="request_details">Request Details</string>
+    <string name="view_reviews">View reviews</string>
+    <string name="accept">Accept</string>
+    <string name="kd">KD</string>
 </resources>

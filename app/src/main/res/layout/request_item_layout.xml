@@ -24,7 +24,7 @@
             android:layout_height="wrap_content"
             android:fontFamily="sans-serif-medium"
             android:gravity="center"
-            android:text="@{@string/request_id + request.caseId}"
+            android:text="@{@string/request_id + request.caseId, default = @string/request_id}"
             android:textColor="@color/twilight_blue"
             android:textSize="@dimen/_15ssp" />
 
@@ -94,7 +94,7 @@
             android:fontFamily="sans-serif-light"
             android:textColor="@color/twilight_blue"
             android:textSize="@dimen/_10ssp"
-            app:descriptionFields="@{request.description}"/>
+            app:descriptionFields="@{request.fields}"/>
 
         <View
             android:layout_marginTop="@dimen/_5sdp"
