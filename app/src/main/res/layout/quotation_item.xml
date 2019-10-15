@@ -59,7 +59,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/_10sdp"
-                        android:onClick="@{clickListener}"
+                        android:onClick="@{reviewsClickListener}"
                         android:text="@string/view_reviews"
                         android:textColor="@color/purpleish_blue"
                         android:textSize="@dimen/_10sdp" />
@@ -114,6 +114,7 @@
                 android:layout_height="wrap_content"
                 android:backgroundTint="@color/pinkish_orange"
                 android:fontFamily="sans-serif-medium"
+                android:onClick="@{acceptClickListener}"
                 android:text="@string/accept"
                 android:textAllCaps="false"
                 android:textSize="@dimen/_12sdp"
@@ -130,7 +131,11 @@
             type="com.vavisa.taal.data.model.Quotation" />
 
         <variable
-            name="clickListener"
+            name="reviewsClickListener"
+            type="android.view.View.OnClickListener" />
+
+        <variable
+            name="acceptClickListener"
             type="android.view.View.OnClickListener" />
 
     </data>

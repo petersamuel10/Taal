@@ -3,6 +3,7 @@ package com.vavisa.taal.ui.main.requests.details;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
+import com.vavisa.taal.data.model.Quotation;
 import com.vavisa.taal.data.model.RequestDetails;
 import com.vavisa.taal.data.network.main.Resource;
 import com.vavisa.taal.data.repository.RequestDetailsRepository;
@@ -19,6 +20,7 @@ public class RequestDetailsViewModel extends ViewModel {
     private CompositeDisposable compositeDisposable = new CompositeDisposable();
     private MutableLiveData<Resource<RequestDetails>> liveData = new MutableLiveData<>();
     private MutableLiveData<Integer> providerIdLiveData = new MutableLiveData<>();
+    private MutableLiveData<Quotation> acceptedQuotation = new MutableLiveData<>();
 
     @Inject
     RequestDetailsViewModel(RequestDetailsRepository requestDetailsRepository) {
@@ -31,6 +33,14 @@ public class RequestDetailsViewModel extends ViewModel {
 
     public MutableLiveData<Integer> getProviderIdLiveData() {
         return providerIdLiveData;
+    }
+
+    public void setAcceptedQuotation(Quotation quotation) {
+        acceptedQuotation.setValue(quotation);
+    }
+
+    public MutableLiveData<Quotation> getAcceptedQuotation() {
+        return acceptedQuotation;
     }
 
     void setProviderIdLiveData(Integer providerId) {

@@ -1,6 +1,7 @@
 package com.vavisa.taal.ui.main.requests.details;
 
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
@@ -36,14 +37,18 @@ public class QuotationsAdapter extends RecyclerView.Adapter<QuotationsAdapter.Vi
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         holder.quotationItemBinding.setQuotation(quotations.get(position));
-        holder.quotationItemBinding.setClickListener(view -> {
-            ViewModelProviders.of(activity)
-                    .get(RequestDetailsViewModel.class)
-                    .setProviderIdLiveData(quotations.get(position)
-                            .getProvider().getProviderId());
-            ReviewsBottomFragment reviewsBottomFragment = new ReviewsBottomFragment();
-            reviewsBottomFragment.show(activity.getSupportFragmentManager(), "modalSheetDialog");
-        });
+        holder.quotationItemBinding.setReviewsClickListener(view ->
+                getReviews(quotations.get(position).getProvider().getProviderId()));
+
+        holder.quotationItemBinding.setAcceptClickListener(view ->
+                ViewModelProviders.of(activity).get(RequestDetailsViewModel.class)
+                        .setAcceptedQuotation(quotations.get(position)));
+    }
+
+    private void getReviews(Integer providerId){
+        ViewModelProviders.of(activity).get(RequestDetailsViewModel.class).setProviderIdLiveData(providerId);
+        ReviewsBottomFragment reviewsBottomFragment = new ReviewsBottomFragment();
+        reviewsBottomFragment.show(activity.getSupportFragmentManager(), "modalSheetDialog");
     }
 
     @Override

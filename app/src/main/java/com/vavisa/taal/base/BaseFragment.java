@@ -2,6 +2,7 @@ package com.vavisa.taal.base;
 
 import android.widget.Toast;
 
+import com.vavisa.taal.data.model.SessionManager;
 import com.vavisa.taal.di.util.ViewModelProviderFactory;
 import com.vavisa.taal.util.JsonParser;
 import com.vavisa.taal.util.ProgressDialog;
@@ -14,6 +15,9 @@ import okhttp3.ResponseBody;
 import retrofit2.HttpException;
 
 public class BaseFragment extends DaggerFragment {
+
+    @Inject
+    protected SessionManager sessionManager;
 
     @Inject
     protected ViewModelProviderFactory providerFactory;
