@@ -1,25 +1,19 @@
 package com.vavisa.taal.data.model;
 
-import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
 public class Parameter {
 
-    @Expose
     private Integer id;
 
-    @Expose
     private String type;
 
-    @Expose
     private List<String> value;
 
-    @Expose
     private Boolean required;
 
-    @Expose
     private String label;
 
     @SerializedName("datatype")

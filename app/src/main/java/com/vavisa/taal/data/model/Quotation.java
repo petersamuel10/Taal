@@ -1,14 +1,11 @@
 package com.vavisa.taal.data.model;
 
-import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 public class Quotation {
 
-    @Expose
     private String price;
 
-    @Expose
     private Provider provider;
 
     @SerializedName("extra_notes")

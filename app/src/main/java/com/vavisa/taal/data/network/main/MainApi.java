@@ -1,5 +1,6 @@
 package com.vavisa.taal.data.network.main;
 
+import com.vavisa.taal.data.model.Address;
 import com.vavisa.taal.data.model.CaseRequest;
 import com.vavisa.taal.data.model.Case;
 import com.vavisa.taal.data.model.Category;
@@ -36,6 +37,9 @@ public interface MainApi {
 
     @GET("provider/getReviews/{provider_id}")
     Observable<List<Review>> getProviderReviews(@Path("provider_id") Integer providerId);
+
+    @GET("user/getAddresses")
+    Observable<List<Address>> getMyAddresses();
 
     @GET("user/getProfile")
     Observable<User> getUserProfile();

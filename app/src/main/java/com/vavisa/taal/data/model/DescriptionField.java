@@ -1,13 +1,9 @@
 package com.vavisa.taal.data.model;
 
-import com.google.gson.annotations.Expose;
-
 public class DescriptionField {
 
-    @Expose
     private String label;
 
-    @Expose
     private String value;
 
     public String getLabel() {

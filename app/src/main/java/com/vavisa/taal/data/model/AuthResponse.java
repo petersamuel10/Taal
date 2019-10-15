@@ -1,14 +1,11 @@
 package com.vavisa.taal.data.model;
 
-import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 public class AuthResponse {
 
-    @Expose
     private String message;
 
-    @Expose
     private User user;
 
     @SerializedName("access_token")

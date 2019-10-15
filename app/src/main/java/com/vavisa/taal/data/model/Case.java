@@ -1,19 +1,15 @@
 package com.vavisa.taal.data.model;
 
-import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
 public class Case {
 
-    @Expose
     private List<DescriptionField> fields;
 
-    @Expose
     private Category category;
 
-    @Expose
     private Status status;
 
     @SerializedName("case_id")

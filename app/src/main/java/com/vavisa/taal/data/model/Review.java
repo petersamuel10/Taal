@@ -1,22 +1,15 @@
 package com.vavisa.taal.data.model;
 
-import com.google.gson.annotations.Expose;
-
 public class Review {
 
-    @Expose
     private String fullname;
 
-    @Expose
     private String comment;
 
-    @Expose
     private String datetime;
 
-    @Expose
     private Float rating;
 
-    @Expose
     private String imageUrl;
 
     public String getFullname() {

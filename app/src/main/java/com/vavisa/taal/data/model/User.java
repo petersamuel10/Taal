@@ -1,27 +1,19 @@
 package com.vavisa.taal.data.model;
 
-
-import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 public class User {
 
-    @Expose
     private Integer id;
 
-    @Expose
     private String email;
 
-    @Expose
     private String mobile;
 
-    @Expose
     private Integer status;
 
-    @Expose
     private Integer approved;
 
-    @Expose
     private String imageUrl;
 
     @SerializedName("fullname")

@@ -1,12 +1,9 @@
 package com.vavisa.taal.data.model;
 
-import com.google.gson.annotations.Expose;
-
 public class CaseField {
-    @Expose
+
     private Integer id;
 
-    @Expose
     private String value;
 
     public CaseField(Integer id, String value) {

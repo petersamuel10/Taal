@@ -1,16 +1,11 @@
 package com.vavisa.taal.data.model;
 
-import com.google.gson.annotations.Expose;
-
 public class Category {
 
-    @Expose
     private Integer id;
 
-    @Expose
     private String name;
 
-    @Expose
     private String image;
 
     public Integer getId() {

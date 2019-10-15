@@ -10,32 +10,63 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.widget.Toolbar;
+import androidx.databinding.DataBindingUtil;
+import androidx.lifecycle.ViewModelProviders;
 
 import com.vavisa.taal.R;
 import com.vavisa.taal.base.BaseFragment;
+import com.vavisa.taal.data.model.Address;
+import com.vavisa.taal.data.network.main.Resource;
+import com.vavisa.taal.databinding.FragmentAddressesBinding;
 import com.vavisa.taal.ui.main.navigation.NavigationActivity;
+
+import org.jetbrains.annotations.NotNull;
+
+import java.util.List;
 
 public class AddressesFragment extends BaseFragment {
 
-    public AddressesFragment() {
-    }
+    private FragmentAddressesBinding addressesBinding;
+
+    public AddressesFragment() {}
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_addresses, container, false);
+    public View onCreateView(@NotNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        addressesBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_addresses, container, false);
+        return addressesBinding.getRoot();
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        setUpActionMenu(view);
+        setUpActionMenu();
+        AddressesViewModel addressesViewModel = ViewModelProviders.of(this, providerFactory).get(AddressesViewModel.class);
+        addressesViewModel.getAddressesLiveData().observe(this, this::consumeAddressesResponse);
+        addressesViewModel.getMyAddresses();
     }
 
-    private void setUpActionMenu(View view) {
-        Toolbar myToolbar = view.findViewById(R.id.actions_toolbar);
+    private void consumeAddressesResponse(Resource<List<Address>> listResource) {
+        switch (listResource.status){
+            case LOADING:
+                showProgress();
+                break;
+
+            case ERROR:
+                hideProgress();
+                showErrorMessage(listResource.error);
+                break;
+
+            case SUCCESS:
+                hideProgress();
+                if (listResource.data != null)
+                    addressesBinding.setAddressList(listResource.data);
+                break;
+        }
+    }
+
+    private void setUpActionMenu() {
         NavigationActivity activity = (NavigationActivity) getActivity();
         if (activity != null && activity.getSupportActionBar() != null) {
-            activity.setSupportActionBar(myToolbar);
+            activity.setSupportActionBar(addressesBinding.actionsToolbar);
             activity.getSupportActionBar().setTitle("");
         }
         setHasOptionsMenu(true);
