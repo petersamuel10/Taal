@@ -13,7 +13,6 @@ import com.vavisa.taal.data.model.Quotation;
 import com.vavisa.taal.databinding.QuotationItemBinding;
 import com.vavisa.taal.ui.main.navigation.NavigationActivity;
 import com.vavisa.taal.ui.main.requests.review.ReviewsBottomFragment;
-import com.vavisa.taal.ui.main.requests.review.ReviewsViewModel;
 
 import java.util.List;
 

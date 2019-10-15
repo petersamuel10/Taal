@@ -1,4 +1,4 @@
-package com.vavisa.taal.ui.main.requests;
+package com.vavisa.taal.ui.main.requests.list;
 
 
 import android.widget.TextView;

@@ -8,7 +8,7 @@ import com.vavisa.taal.R;
 import com.vavisa.taal.base.BaseFragment;
 import com.vavisa.taal.ui.main.home.categories.HomeFragment;
 import com.vavisa.taal.ui.main.profile.ProfileFragment;
-import com.vavisa.taal.ui.main.requests.MyRequestsFragment;
+import com.vavisa.taal.ui.main.requests.list.MyRequestsFragment;
 
 public class NavigationEventHandler {
 

@@ -6,8 +6,8 @@
     <com.google.android.material.card.MaterialCardView
         android:layout_width="@dimen/_250sdp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/_15sdp"
-        android:layout_marginEnd="@dimen/_15ssp"
+        android:layout_marginStart="@dimen/_10sdp"
+        android:layout_marginEnd="@dimen/_10ssp"
         android:layout_marginBottom="@dimen/_5sdp"
         android:layerType="software"
         android:orientation="vertical"
@@ -50,11 +50,9 @@
                     android:orientation="vertical">
 
                     <RatingBar
-                        style="?android:attr/ratingBarStyleSmall"
+                        style="@style/Widget.AppCompat.RatingBar.Small"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:clickable="false"
-                        android:isIndicator="false"
                         android:rating="@{quotation.provider.providerRating}" />
 
                     <TextView

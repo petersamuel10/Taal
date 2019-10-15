@@ -1,49 +1,52 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout>
+
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        android:orientation="horizontal" android:layout_width="match_parent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
         android:paddingStart="@dimen/_20sdp"
         android:paddingEnd="@dimen/_20sdp"
-        android:paddingBottom="@dimen/_20sdp"
-        android:layout_height="wrap_content">
+        android:paddingBottom="@dimen/_20sdp">
 
         <de.hdodenhof.circleimageview.CircleImageView
-            android:src="@drawable/painter"
+            imageUrl="@{review.imageUrl}"
             android:layout_width="@dimen/_35sdp"
             android:layout_height="@dimen/_35sdp"
-            imageUrl="@{review.imageUrl}"/>
+            android:src="@drawable/painter" />
 
         <LinearLayout
-            android:orientation="vertical"
-            android:layout_marginStart="@dimen/_10sdp"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_10sdp"
+            android:orientation="vertical">
 
             <TextView
-                android:textSize="@dimen/_11sdp"
-                android:fontFamily="sans-serif-medium"
-                android:textColor="@color/twilight_blue"
-                android:text="@{review.fullname}"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content"
+                android:fontFamily="sans-serif-medium"
+                android:text="@{review.fullname}"
+                android:textColor="@color/twilight_blue"
+                android:textSize="@dimen/_11sdp" />
 
             <RatingBar
-                android:rating="@{review.rating}"
                 style="@style/Widget.AppCompat.RatingBar.Small"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content"
+                android:rating="@{review.rating}" />
 
             <TextView
-                android:layout_marginTop="@dimen/_10sdp"
-                android:textSize="@dimen/_9ssp"
-                android:text="@{review.comment}"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:text="@{review.comment}"
+                android:textSize="@dimen/_9ssp" />
         </LinearLayout>
 
     </LinearLayout>
 
     <data>
+
         <variable
             name="review"
             type="com.vavisa.taal.data.model.Review" />

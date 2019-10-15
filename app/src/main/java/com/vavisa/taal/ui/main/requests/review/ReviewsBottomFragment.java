@@ -2,18 +2,15 @@ package com.vavisa.taal.ui.main.requests.review;
 
 import android.content.Context;
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.databinding.DataBindingUtil;
-import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProviders;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.databinding.DataBindingUtil;
+import androidx.lifecycle.ViewModelProviders;
 
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 import com.vavisa.taal.R;
@@ -27,7 +24,6 @@ import com.vavisa.taal.util.ProgressDialog;
 
 import org.jetbrains.annotations.NotNull;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -42,14 +38,21 @@ import retrofit2.HttpException;
 public class ReviewsBottomFragment extends BottomSheetDialogFragment implements HasAndroidInjector {
 
     @Inject
-    DispatchingAndroidInjector<Object> androidInjector;
+    protected ViewModelProviderFactory providerFactory;
 
     @Inject
-    protected ViewModelProviderFactory providerFactory;
+    DispatchingAndroidInjector<Object> androidInjector;
 
     private FragmentReviewsBottomBinding reviewsBottomBinding;
 
-    public ReviewsBottomFragment() {}
+    public ReviewsBottomFragment() {
+    }
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setStyle(BottomSheetDialogFragment.STYLE_NORMAL, R.style.CustomBottomSheetDialogTheme);
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -63,6 +66,7 @@ public class ReviewsBottomFragment extends BottomSheetDialogFragment implements 
         viewModel.getLiveData().observe(this, this::consumeResponse);
         RequestDetailsViewModel requestDetailsViewModel = ViewModelProviders.of(getActivity()).get(RequestDetailsViewModel.class);
         requestDetailsViewModel.getProviderIdLiveData().observe(this, viewModel::getProviderReviews);
+        reviewsBottomBinding.setClickListener(button -> dismiss());
     }
 
     @Override
@@ -77,7 +81,7 @@ public class ReviewsBottomFragment extends BottomSheetDialogFragment implements 
     }
 
     private void consumeResponse(Resource<List<Review>> listResource) {
-        switch (listResource.status){
+        switch (listResource.status) {
             case LOADING:
                 showProgress();
                 break;
@@ -89,6 +93,8 @@ public class ReviewsBottomFragment extends BottomSheetDialogFragment implements 
 
             case SUCCESS:
                 hideProgress();
+                if (listResource.data.size() == 0)
+                    reviewsBottomBinding.setIsEmptyList(true);
                 reviewsBottomBinding.setReviewList(listResource.data);
         }
     }
