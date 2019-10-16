@@ -25,11 +25,11 @@ public class HomeViewModel extends ViewModel {
     private MutableLiveData<Category> selectedCategory = new MutableLiveData<>();
 
     @Inject
-    HomeViewModel(HomeRepository homeRepository) {
+    public HomeViewModel(HomeRepository homeRepository) {
         this.homeRepository = homeRepository;
     }
 
-    MutableLiveData<Resource<List<Category>>> getLiveData() {
+    public MutableLiveData<Resource<List<Category>>> getLiveData() {
         return liveData;
     }
 
@@ -45,7 +45,7 @@ public class HomeViewModel extends ViewModel {
         selectedCategory.setValue(category);
     }
 
-    void getCategories() {
+    public void getCategories() {
         compositeDisposable.add(homeRepository.getCategories()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())

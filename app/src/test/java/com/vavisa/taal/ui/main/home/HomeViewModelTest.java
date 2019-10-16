@@ -17,6 +17,8 @@ import org.mockito.MockitoAnnotations;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.TimeUnit;
 
 import io.reactivex.Observable;
 import io.reactivex.android.plugins.RxAndroidPlugins;
@@ -68,12 +70,13 @@ class HomeViewModelTest {
     }
 
     @Test
-    void testApiFetchDataError(){
+    void testApiFetchDataError() throws InterruptedException {
         final Throwable throwable = new Throwable();
         final Observable<List<Category>> error = Observable.error(throwable);
 
         when(homeRepository.getCategories()).thenReturn(error);
         homeViewModel.getCategories();
+        new CountDownLatch(1).await(100, TimeUnit.MILLISECONDS);
 
         verify(observer).onChanged(Resource.loading());
         verify(observer).onChanged(Resource.error(throwable));
@@ -81,8 +84,4 @@ class HomeViewModelTest {
         assertEquals(Resource.error(throwable), homeViewModel.getLiveData().getValue());
     }
 
-    @AfterEach
-    void tearDown() {
-        homeRepository = null;
-    }
 }

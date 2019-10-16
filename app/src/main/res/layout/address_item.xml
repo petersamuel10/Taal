@@ -42,7 +42,7 @@
                 android:textSize="@dimen/_13ssp"
                 android:fontFamily="sans-serif-light"
                 android:textColor="@color/twilight_blue"
-                android:text="@{address.building.concat(` `).concat(address.street).concat(` `).concat(address.block)}"
+                android:text="@{address.building.concat(`, Street `).concat(address.street).concat(`, Block `).concat(address.block)}"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
 
