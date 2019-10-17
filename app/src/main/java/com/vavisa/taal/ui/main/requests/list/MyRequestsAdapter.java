@@ -36,6 +36,7 @@ public class MyRequestsAdapter extends RecyclerView.Adapter<MyRequestsAdapter.Vi
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         holder.binding.setRequest(caseList.get(position));
         holder.binding.setClickListener(view -> {
+            activity.sharedViewModel.setCaseIdLiveData(caseList.get(position).getCaseId());
             activity.addFragment(new RequestDetailsFragment());
         });
     }

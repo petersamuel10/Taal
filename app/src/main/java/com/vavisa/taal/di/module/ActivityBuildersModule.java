@@ -1,5 +1,6 @@
 package com.vavisa.taal.di.module;
 
+import com.vavisa.taal.SplashActivity;
 import com.vavisa.taal.di.scope.AuthScope;
 import com.vavisa.taal.di.scope.MainScope;
 import com.vavisa.taal.ui.auth.base.AuthActivity;
@@ -12,6 +13,10 @@ import dagger.android.ContributesAndroidInjector;
 
 @Module
 public abstract class ActivityBuildersModule {
+
+    @AuthScope
+    @ContributesAndroidInjector()
+    abstract SplashActivity contributeSplashActivity();
 
     @AuthScope
     @ContributesAndroidInjector(modules = {AuthViewModelModule.class, AuthModule.class})

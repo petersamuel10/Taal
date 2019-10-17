@@ -1,9 +1,14 @@
 package com.vavisa.taal.base;
 
+import android.os.Bundle;
 import android.widget.Toast;
+
+import androidx.annotation.Nullable;
+import androidx.lifecycle.ViewModelProviders;
 
 import com.vavisa.taal.data.model.SessionManager;
 import com.vavisa.taal.di.util.ViewModelProviderFactory;
+import com.vavisa.taal.helper.SharedViewModel;
 import com.vavisa.taal.util.JsonParser;
 import com.vavisa.taal.util.ProgressDialog;
 
@@ -21,6 +26,14 @@ public class BaseFragment extends DaggerFragment {
 
     @Inject
     protected ViewModelProviderFactory providerFactory;
+
+    protected SharedViewModel sharedViewModel;
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        sharedViewModel = ViewModelProviders.of(getActivity()).get(SharedViewModel.class);
+    }
 
     public BaseFragment() {}
 

@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.databinding.DataBindingUtil;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
 import com.vavisa.taal.R;
@@ -42,27 +43,18 @@ public class RequestDetailsFragment extends BaseFragment {
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-//        if (sessionManager != null) {
-//            if (sessionManager.getAuthUser().getValue() != null)
-//                invoice = new Invoice(sessionManager.getAuthUser().getValue().data);
-//            else
-//                showMessage("Value Null");
-//        } else
-//            showMessage("Session Null");
+        if (sessionManager.getAuthUser().getValue() != null)
+            invoice = new Invoice(sessionManager.getAuthUser().getValue().data);
+
         RequestDetailsViewModel viewModel = ViewModelProviders
                 .of(Objects.requireNonNull(getActivity()), providerFactory)
                 .get(RequestDetailsViewModel.class);
         viewModel.getLiveData().observe(this, this::consumeResponse);
-        viewModel.getAcceptedQuotation().observe(this, this::acceptQuotation);
-        viewModel.getRequestDetails(1);
+
+        sharedViewModel.getCaseIdLiveData().observe(this, viewModel::getRequestDetails);
+        sharedViewModel.getAcceptedQuotation().observe(this, quotation -> invoice.setQuotation(quotation));
         observeForAddressSelected();
     }
-
-    private void acceptQuotation(Quotation quotation) {
-//        invoice.setQuotation(quotation);
-        ((NavigationActivity) Objects.requireNonNull(getActivity())).addFragment(new AddressesFragment());
-    }
-
     private void observeForAddressSelected() {
         AddressesViewModel addressesViewModel = ViewModelProviders
                 .of(Objects.requireNonNull(getActivity()), providerFactory)
@@ -95,7 +87,7 @@ public class RequestDetailsFragment extends BaseFragment {
     }
 
     private void displayRequestDetails(RequestDetails data) {
-//        invoice.setRequestCase(data.getCaseDetails());
+        invoice.setRequestCase(data.getCaseDetails());
         requestDetailsBinding.setRequest(data.getCaseDetails());
         requestDetailsBinding.setQuotationList(data.getQuotations());
     }

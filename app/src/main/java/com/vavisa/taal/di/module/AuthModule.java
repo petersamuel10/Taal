@@ -8,7 +8,7 @@ import dagger.Provides;
 import retrofit2.Retrofit;
 
 @Module
-public class AuthModule {
+class AuthModule {
 
     @AuthScope
     @Provides

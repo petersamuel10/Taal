@@ -13,6 +13,7 @@ import com.vavisa.taal.R;
 import com.vavisa.taal.data.model.Quotation;
 import com.vavisa.taal.databinding.QuotationItemBinding;
 import com.vavisa.taal.ui.main.navigation.NavigationActivity;
+import com.vavisa.taal.ui.main.profile.addresses.AddressesFragment;
 import com.vavisa.taal.ui.main.requests.review.ReviewsBottomFragment;
 
 import java.util.List;
@@ -40,13 +41,14 @@ public class QuotationsAdapter extends RecyclerView.Adapter<QuotationsAdapter.Vi
         holder.quotationItemBinding.setReviewsClickListener(view ->
                 getReviews(quotations.get(position).getProvider().getProviderId()));
 
-        holder.quotationItemBinding.setAcceptClickListener(view ->
-                ViewModelProviders.of(activity).get(RequestDetailsViewModel.class)
-                        .setAcceptedQuotation(quotations.get(position)));
+        holder.quotationItemBinding.setAcceptClickListener(view -> {
+            activity.sharedViewModel.setAcceptedQuotation(quotations.get(position));
+            activity.addFragment(new AddressesFragment());
+        });
     }
 
     private void getReviews(Integer providerId){
-        ViewModelProviders.of(activity).get(RequestDetailsViewModel.class).setProviderIdLiveData(providerId);
+        activity.sharedViewModel.setProviderIdLiveData(providerId);
         ReviewsBottomFragment reviewsBottomFragment = new ReviewsBottomFragment();
         reviewsBottomFragment.show(activity.getSupportFragmentManager(), "modalSheetDialog");
     }

@@ -18,6 +18,7 @@ import com.vavisa.taal.data.model.Review;
 import com.vavisa.taal.data.network.main.Resource;
 import com.vavisa.taal.databinding.FragmentReviewsBottomBinding;
 import com.vavisa.taal.di.util.ViewModelProviderFactory;
+import com.vavisa.taal.helper.SharedViewModel;
 import com.vavisa.taal.ui.main.requests.details.RequestDetailsViewModel;
 import com.vavisa.taal.util.JsonParser;
 import com.vavisa.taal.util.ProgressDialog;
@@ -64,8 +65,8 @@ public class ReviewsBottomFragment extends BottomSheetDialogFragment implements 
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         ReviewsViewModel viewModel = ViewModelProviders.of(this, providerFactory).get(ReviewsViewModel.class);
         viewModel.getLiveData().observe(this, this::consumeResponse);
-        RequestDetailsViewModel requestDetailsViewModel = ViewModelProviders.of(getActivity()).get(RequestDetailsViewModel.class);
-        requestDetailsViewModel.getProviderIdLiveData().observe(this, viewModel::getProviderReviews);
+        SharedViewModel sharedViewModel = ViewModelProviders.of(getActivity()).get(SharedViewModel.class);
+        sharedViewModel.getProviderIdLiveData().observe(this, viewModel::getProviderReviews);
         reviewsBottomBinding.setClickListener(button -> dismiss());
     }
 
