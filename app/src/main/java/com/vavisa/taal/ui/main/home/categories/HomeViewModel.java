@@ -22,7 +22,6 @@ public class HomeViewModel extends ViewModel {
     private CompositeDisposable compositeDisposable = new CompositeDisposable();
     private MutableLiveData<Resource<List<Category>>> liveData = new MutableLiveData<>();
     private MutableLiveData<List<Category>> searchLiveData = new MutableLiveData<>();
-    private MutableLiveData<Category> selectedCategory = new MutableLiveData<>();
 
     @Inject
     public HomeViewModel(HomeRepository homeRepository) {
@@ -35,14 +34,6 @@ public class HomeViewModel extends ViewModel {
 
     MutableLiveData<List<Category>> getSearchLiveData() {
         return searchLiveData;
-    }
-
-    public MutableLiveData<Category> getSelectedCategory() {
-        return selectedCategory;
-    }
-
-    void setSelectedCategory(Category category) {
-        selectedCategory.setValue(category);
     }
 
     public void getCategories() {

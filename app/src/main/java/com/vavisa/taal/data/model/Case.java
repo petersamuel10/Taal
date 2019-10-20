@@ -79,4 +79,14 @@ public class Case {
     public void setDelete(Boolean delete) {
         isDelete = delete;
     }
+
+    public String getDescription() {
+        StringBuilder description = new StringBuilder();
+        for (DescriptionField field : fields) {
+            description.append(field.getLabel().concat(" : ").concat(field.getValue()).concat("\n"));
+        }
+        return description.toString().length() != 0 ?
+                description.toString().substring(0, description.length() - 1) :
+                description.toString();
+    }
 }

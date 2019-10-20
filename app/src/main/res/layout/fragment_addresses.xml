@@ -32,5 +32,6 @@
         <variable
             name="addressList"
             type="List&lt;Address>" />
+
     </data>
 </layout>

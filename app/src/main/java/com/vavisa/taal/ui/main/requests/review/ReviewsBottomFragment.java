@@ -56,7 +56,7 @@ public class ReviewsBottomFragment extends BottomSheetDialogFragment implements 
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+    public View onCreateView(@NotNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         reviewsBottomBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_reviews_bottom, container, false);
         return reviewsBottomBinding.getRoot();
     }

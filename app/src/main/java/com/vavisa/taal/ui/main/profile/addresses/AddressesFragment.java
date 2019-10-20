@@ -18,7 +18,6 @@ import com.vavisa.taal.base.BaseFragment;
 import com.vavisa.taal.data.model.Address;
 import com.vavisa.taal.data.network.main.Resource;
 import com.vavisa.taal.databinding.FragmentAddressesBinding;
-import com.vavisa.taal.ui.main.navigation.NavigationActivity;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -28,7 +27,8 @@ public class AddressesFragment extends BaseFragment {
 
     private FragmentAddressesBinding addressesBinding;
 
-    public AddressesFragment() {}
+    public AddressesFragment() {
+    }
 
     @Override
     public View onCreateView(@NotNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -45,7 +45,7 @@ public class AddressesFragment extends BaseFragment {
     }
 
     private void consumeAddressesResponse(Resource<List<Address>> listResource) {
-        switch (listResource.status){
+        switch (listResource.status) {
             case LOADING:
                 showProgress();
                 break;
@@ -64,11 +64,9 @@ public class AddressesFragment extends BaseFragment {
     }
 
     private void setUpActionMenu() {
-        NavigationActivity activity = (NavigationActivity) getActivity();
-        if (activity != null && activity.getSupportActionBar() != null) {
-            activity.setSupportActionBar(addressesBinding.actionsToolbar);
-            activity.getSupportActionBar().setTitle("");
-        }
+        navigationActivity.setSupportActionBar(addressesBinding.actionsToolbar);
+        if (navigationActivity.getSupportActionBar() != null)
+            navigationActivity.getSupportActionBar().setTitle("");
         setHasOptionsMenu(true);
     }
 

@@ -94,7 +94,7 @@
             android:fontFamily="sans-serif-light"
             android:textColor="@color/twilight_blue"
             android:textSize="@dimen/_10ssp"
-            app:descriptionFields="@{request.fields}"/>
+            android:text="@{request.description}"/>
 
         <View
             android:layout_marginTop="@dimen/_5sdp"

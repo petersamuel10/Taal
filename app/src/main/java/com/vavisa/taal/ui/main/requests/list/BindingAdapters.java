@@ -59,19 +59,4 @@ public class BindingAdapters {
         Picasso.get().load(imageUrl).placeholder(R.drawable.image_placholder).into(imageView);
     }
 
-    @BindingAdapter("descriptionFields")
-    public static void setDescriptionFields(TextView textView, List<DescriptionField> fields) {
-        if (fields != null)
-            textView.setText(getDescription(fields));
-    }
-
-    private static String getDescription(List<DescriptionField> fields) {
-        StringBuilder description = new StringBuilder();
-        for (DescriptionField field : fields) {
-            description.append(field.getLabel().concat(" : ").concat(field.getValue()).concat("\n"));
-        }
-        return description.toString().length() != 0 ?
-                description.toString().substring(0, description.length() - 1) :
-                description.toString();
-    }
 }

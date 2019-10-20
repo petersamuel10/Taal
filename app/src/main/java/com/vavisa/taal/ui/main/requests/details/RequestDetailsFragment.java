@@ -8,29 +8,24 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.databinding.DataBindingUtil;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
 import com.vavisa.taal.R;
 import com.vavisa.taal.base.BaseFragment;
 import com.vavisa.taal.data.model.Address;
 import com.vavisa.taal.data.model.Invoice;
-import com.vavisa.taal.data.model.Quotation;
 import com.vavisa.taal.data.model.RequestDetails;
 import com.vavisa.taal.data.network.main.Resource;
 import com.vavisa.taal.databinding.FragmentRequestDetailsBinding;
-import com.vavisa.taal.ui.main.navigation.NavigationActivity;
-import com.vavisa.taal.ui.main.profile.addresses.AddressesFragment;
-import com.vavisa.taal.ui.main.profile.addresses.AddressesViewModel;
+import com.vavisa.taal.ui.main.requests.invoice.InvoiceFragment;
 
 import org.jetbrains.annotations.NotNull;
 
-import java.util.Objects;
 
 public class RequestDetailsFragment extends BaseFragment {
 
     private Invoice invoice;
-
+    private RequestDetailsViewModel viewModel;
     private FragmentRequestDetailsBinding requestDetailsBinding;
 
     public RequestDetailsFragment() {}
@@ -46,25 +41,23 @@ public class RequestDetailsFragment extends BaseFragment {
         if (sessionManager.getAuthUser().getValue() != null)
             invoice = new Invoice(sessionManager.getAuthUser().getValue().data);
 
-        RequestDetailsViewModel viewModel = ViewModelProviders
-                .of(Objects.requireNonNull(getActivity()), providerFactory)
-                .get(RequestDetailsViewModel.class);
+        viewModel = ViewModelProviders.of(this, providerFactory).get(RequestDetailsViewModel.class);
         viewModel.getLiveData().observe(this, this::consumeResponse);
 
+        subscribeSharedObservers();
+    }
+
+    private void subscribeSharedObservers() {
+        sharedViewModel.getSelectedAddress().observe(this, this::openInvoice);
         sharedViewModel.getCaseIdLiveData().observe(this, viewModel::getRequestDetails);
         sharedViewModel.getAcceptedQuotation().observe(this, quotation -> invoice.setQuotation(quotation));
-        observeForAddressSelected();
-    }
-    private void observeForAddressSelected() {
-        AddressesViewModel addressesViewModel = ViewModelProviders
-                .of(Objects.requireNonNull(getActivity()), providerFactory)
-                .get(AddressesViewModel.class);
-        addressesViewModel.getSelectedAddress().observe(this, this::openInvoice);
     }
 
     private void openInvoice(Address address) {
         invoice.setAddress(address);
-        ((NavigationActivity) Objects.requireNonNull(getActivity())).addFragment(new AddressesFragment());
+        sharedViewModel.setRequestInvoice(invoice);
+        navigationActivity.getSupportFragmentManager().popBackStack();
+        navigationActivity.addFragment(new InvoiceFragment());
     }
 
     private void consumeResponse(Resource<RequestDetails> requestDetailsResource) {

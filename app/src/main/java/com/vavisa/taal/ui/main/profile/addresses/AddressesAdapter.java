@@ -11,14 +11,16 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.vavisa.taal.R;
 import com.vavisa.taal.data.model.Address;
 import com.vavisa.taal.databinding.AddressItemBinding;
+import com.vavisa.taal.ui.main.navigation.NavigationActivity;
 
 import java.util.List;
 
 public class AddressesAdapter extends RecyclerView.Adapter<AddressesAdapter.ViewHolder> {
 
     private List<Address> addresses;
+    private NavigationActivity activity;
 
-    public AddressesAdapter(List<Address> addresses) {
+    AddressesAdapter(List<Address> addresses) {
         this.addresses = addresses;
     }
 
@@ -33,11 +35,19 @@ public class AddressesAdapter extends RecyclerView.Adapter<AddressesAdapter.View
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         holder.itemBinding.setAddress(addresses.get(position));
+        holder.itemBinding.setClickListener(view ->
+                activity.sharedViewModel.setSelectedAddress(addresses.get(position)));
     }
 
     @Override
     public int getItemCount() {
         return addresses.size();
+    }
+
+    @Override
+    public void onAttachedToRecyclerView(@NonNull RecyclerView recyclerView) {
+        super.onAttachedToRecyclerView(recyclerView);
+        activity = (NavigationActivity) recyclerView.getContext();
     }
 
     class ViewHolder extends RecyclerView.ViewHolder{

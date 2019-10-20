@@ -4,12 +4,22 @@ import com.google.gson.annotations.SerializedName;
 
 public class Quotation {
 
+    private Integer id;
+
     private String price;
 
     private Provider provider;
 
     @SerializedName("extra_notes")
     private String extraNotes;
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
     public String getPrice() {
         return price;

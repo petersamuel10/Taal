@@ -1,16 +1,14 @@
 package com.vavisa.taal.ui.main.home.request;
 
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.databinding.DataBindingUtil;
 import androidx.lifecycle.ViewModelProviders;
-
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.Toast;
 
 import com.vavisa.taal.R;
 import com.vavisa.taal.base.BaseFragment;
@@ -20,8 +18,6 @@ import com.vavisa.taal.data.network.main.Resource;
 import com.vavisa.taal.databinding.FragmentAddRequestBinding;
 import com.vavisa.taal.di.util.ViewModelProviderFactory;
 import com.vavisa.taal.helper.dialogs.SuccessDialog;
-import com.vavisa.taal.ui.main.home.categories.HomeViewModel;
-import com.vavisa.taal.ui.main.navigation.NavigationActivity;
 import com.vavisa.taal.helper.dynamicViews.DynamicView;
 import com.vavisa.taal.helper.dynamicViews.DynamicViewFactory;
 
@@ -29,7 +25,6 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 import javax.inject.Inject;
 
@@ -41,7 +36,8 @@ public class AddRequestFragment extends BaseFragment {
     private AddRequestViewModel viewModel;
     private FragmentAddRequestBinding binding;
 
-    public AddRequestFragment() {}
+    public AddRequestFragment() {
+    }
 
     @Override
     public View onCreateView(@NotNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -55,11 +51,14 @@ public class AddRequestFragment extends BaseFragment {
         viewModel.getLiveData().observe(this, this::consumeResponse);
         viewModel.getCaseLiveData().observe(this, this::consumeRequestResponse);
         binding.setViewModel(viewModel);
-        observeSelectedCategory();
+
+        navigationActivity.sharedViewModel.getSelectedCategory()
+                .observe(this, category ->
+                        viewModel.getRequestParameters(category.getId()));
     }
 
     private void consumeRequestResponse(Resource<GeneralResponse> caseResponseResource) {
-        switch (caseResponseResource.status){
+        switch (caseResponseResource.status) {
             case LOADING:
                 showProgress();
                 break;
@@ -79,41 +78,25 @@ public class AddRequestFragment extends BaseFragment {
     }
 
     private void showSuccessDialog(String message) {
-        SuccessDialog dialog = new SuccessDialog(Objects.requireNonNull(getActivity()),
+        SuccessDialog dialog = new SuccessDialog(navigationActivity,
                 android.R.style.Theme_Black_NoTitleBar_Fullscreen,
-                this::openMyRequests);
+                () -> navigationActivity.mainBinding.setSelectedItemId(R.id.requests));
         dialog.setMessage(message);
         dialog.show();
-    }
-
-    private void openMyRequests(){
-        NavigationActivity navigationActivity = (NavigationActivity) getActivity();
-        if (navigationActivity != null) {
-            navigationActivity.mainBinding.setSelectedItemId(R.id.requests);
-        }
     }
 
     private void createRequestView(List<Parameter> parameters, FragmentAddRequestBinding binding) {
         DynamicViewFactory viewFactory = new DynamicViewFactory(getActivity());
         ArrayList<DynamicView> viewsList = new ArrayList<>();
-        for (Parameter parameter: parameters){
+        for (Parameter parameter : parameters) {
             viewsList.add(viewFactory.createView(parameter));
             viewsList.size();
         }
         binding.setViewsList(viewsList);
     }
 
-    private void observeSelectedCategory() {
-        ViewModelProviders.of(Objects.requireNonNull(getActivity()), providerFactory)
-                .get(HomeViewModel.class)
-                .getSelectedCategory()
-                .observe(this, category -> {
-                    viewModel.getRequestParameters(category.getId());
-                });
-    }
-
     private void consumeResponse(Resource<List<Parameter>> listResource) {
-        switch (listResource.status){
+        switch (listResource.status) {
             case LOADING:
                 showProgress();
                 break;

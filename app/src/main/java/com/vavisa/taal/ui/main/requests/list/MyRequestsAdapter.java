@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.vavisa.taal.R;
 import com.vavisa.taal.data.model.Case;
+import com.vavisa.taal.data.model.Status;
 import com.vavisa.taal.databinding.RequestItemLayoutBinding;
 import com.vavisa.taal.ui.main.navigation.NavigationActivity;
 import com.vavisa.taal.ui.main.requests.details.RequestDetailsFragment;
@@ -36,8 +37,10 @@ public class MyRequestsAdapter extends RecyclerView.Adapter<MyRequestsAdapter.Vi
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         holder.binding.setRequest(caseList.get(position));
         holder.binding.setClickListener(view -> {
-            activity.sharedViewModel.setCaseIdLiveData(caseList.get(position).getCaseId());
-            activity.addFragment(new RequestDetailsFragment());
+            if (caseList.get(position).getStatus() == Status.ACCEPTED) {
+                activity.sharedViewModel.setCaseIdLiveData(caseList.get(position).getCaseId());
+                activity.addFragment(new RequestDetailsFragment());
+            }
         });
     }
 

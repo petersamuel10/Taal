@@ -14,7 +14,10 @@ import java.util.List;
 
 import io.reactivex.Observable;
 import retrofit2.http.Body;
+import retrofit2.http.Field;
+import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
+import retrofit2.http.PATCH;
 import retrofit2.http.POST;
 import retrofit2.http.Path;
 
@@ -40,6 +43,13 @@ public interface MainApi {
 
     @GET("user/getAddresses")
     Observable<List<Address>> getMyAddresses();
+
+    @FormUrlEncoded
+    @PATCH("user/quotationAccepted")
+    Observable<GeneralResponse> acceptQuotation(@Field("case_id") Integer CaseId,
+                                                @Field("provider_id") Integer providerId,
+                                                @Field("quotation_id") Integer quotationId,
+                                                @Field("address_id") Integer addressId);
 
     @GET("user/getProfile")
     Observable<User> getUserProfile();

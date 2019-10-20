@@ -9,6 +9,7 @@ import androidx.lifecycle.ViewModelProviders;
 import com.vavisa.taal.data.model.SessionManager;
 import com.vavisa.taal.di.util.ViewModelProviderFactory;
 import com.vavisa.taal.helper.SharedViewModel;
+import com.vavisa.taal.ui.main.navigation.NavigationActivity;
 import com.vavisa.taal.util.JsonParser;
 import com.vavisa.taal.util.ProgressDialog;
 
@@ -29,10 +30,15 @@ public class BaseFragment extends DaggerFragment {
 
     protected SharedViewModel sharedViewModel;
 
+    protected NavigationActivity navigationActivity;
+
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        sharedViewModel = ViewModelProviders.of(getActivity()).get(SharedViewModel.class);
+        navigationActivity = (NavigationActivity) getActivity();
+        if (navigationActivity != null) {
+            sharedViewModel = ViewModelProviders.of(navigationActivity).get(SharedViewModel.class);
+        }
     }
 
     public BaseFragment() {}

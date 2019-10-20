@@ -19,7 +19,6 @@ public class AddressesViewModel extends ViewModel {
 
     private AddressesRepository addressesRepository;
     private CompositeDisposable compositeDisposable = new CompositeDisposable();
-    private MutableLiveData<Address> selectedAddress = new MutableLiveData<>();
     private MutableLiveData<Resource<List<Address>>> addressesLiveData = new MutableLiveData<>();
 
     @Inject
@@ -27,15 +26,7 @@ public class AddressesViewModel extends ViewModel {
         this.addressesRepository = addressesRepository;
     }
 
-    public void setSelectedAddress(Address address) {
-        selectedAddress.setValue(address);
-    }
-
-    public MutableLiveData<Address> getSelectedAddress() {
-        return selectedAddress;
-    }
-
-    public MutableLiveData<Resource<List<Address>>> getAddressesLiveData() {
+    MutableLiveData<Resource<List<Address>>> getAddressesLiveData() {
         return addressesLiveData;
     }
 
@@ -52,5 +43,6 @@ public class AddressesViewModel extends ViewModel {
 
     @Override
     protected void onCleared() {
+        compositeDisposable.clear();
     }
 }

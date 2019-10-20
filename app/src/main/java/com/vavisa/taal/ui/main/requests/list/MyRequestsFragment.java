@@ -19,6 +19,8 @@ import com.vavisa.taal.data.model.Status;
 import com.vavisa.taal.data.network.main.Resource;
 import com.vavisa.taal.databinding.FragmentMyRequestsBinding;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.util.List;
 
 public class MyRequestsFragment extends BaseFragment {
@@ -29,7 +31,7 @@ public class MyRequestsFragment extends BaseFragment {
     public MyRequestsFragment() {}
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+    public View onCreateView(@NotNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         requestsBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_my_requests, container, false);
         return requestsBinding.getRoot();
     }
