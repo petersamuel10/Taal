@@ -4,6 +4,7 @@ import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 import com.vavisa.taal.data.model.GeneralResponse;
+import com.vavisa.taal.data.model.Invoice;
 import com.vavisa.taal.data.network.main.Resource;
 import com.vavisa.taal.data.repository.InvoiceRepository;
 
@@ -20,7 +21,7 @@ public class InvoiceViewModel extends ViewModel {
     private MutableLiveData<Resource<GeneralResponse>> liveData = new MutableLiveData<>();
 
     @Inject
-    public InvoiceViewModel(InvoiceRepository invoiceRepository) {
+    InvoiceViewModel(InvoiceRepository invoiceRepository) {
         this.invoiceRepository = invoiceRepository;
     }
 
@@ -28,7 +29,14 @@ public class InvoiceViewModel extends ViewModel {
         return liveData;
     }
 
-    public void acceptQuotation(Integer caseId, Integer providerId, Integer quotationId, Integer addressId){
+    public void confirmClicked(Invoice invoice){
+        acceptQuotation(invoice.getRequestCase().getCaseId(),
+                invoice.getQuotation().getProvider().getProviderId(),
+                invoice.getQuotation().getId(),
+                invoice.getAddress().getId());
+    }
+
+    private void acceptQuotation(Integer caseId, Integer providerId, Integer quotationId, Integer addressId){
         compositeDisposable.add(invoiceRepository.acceptQuotation(caseId, providerId, quotationId, addressId)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
